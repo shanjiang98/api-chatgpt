@@ -1,0 +1,13 @@
+Input:
+<method>
+	int daysUntilNow(LocalDate date)
+</method>
+<TestCases>
+	// #1. LocalDate(2015, 11, 12) -> Days.daysBetween(new LocalDate(2015, 11, 12), LocalDate.now()).getDays()
+	// #2. LocalDate(2014, 11, 12) -> Days.daysBetween(new LocalDate(2014, 11, 12), LocalDate.now()).getDays()
+</TestCases>
+
+Output:
+int daysUntilNow(LocalDate date) {
+    return (int) ChronoUnit.DAYS.between(date, LocalDate.now());
+}

@@ -1,0 +1,25 @@
+Input:
+<method>
+   void delimitedStringConcat(List<CharSequence> strs, String delim, StringBuilder result)
+</method>
+<TestCases>
+    // #1.  (List("abc", "DEF", "12345", "?!"), ", ", new StringBuilder("init.")) -> StringBuilder s != null && s.toString().equals("init.abc, DEF, 12345, ?!")
+    // #2.  (List("abc", "DEF"), ", ", new StringBuilder("abc")) -> StringBuilder s != null && s.toString().equals("abcabc, DEF")
+    // #3.  (List("abc"), " ", new StringBuilder("xyz ")) -> StringBuilder s != null && s.toString().equals("xyz abc")
+    // #4.  (List("", ""), ", ", new StringBuilder()) -> StringBuilder s != null && s.toString().equals(", ")
+</TestCases>
+
+Output:
+void delimitedStringConcat(List < CharSequence > strs, String delim, StringBuilder result) {
+    if (strs == null || result == null || delim == null) {
+        throw new IllegalArgumentException("Arguments cannot be null");
+    }
+    boolean first = true;
+    for (CharSequence str: strs) {
+        if (!first) {
+            result.append(delim);
+        }
+        result.append(str);
+        first = false;
+    }
+}

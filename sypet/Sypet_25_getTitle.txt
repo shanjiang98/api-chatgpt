@@ -1,0 +1,20 @@
+Input:
+<method>
+    String getTitle(String url) throws Throwable
+</method>
+<TestCases>
+    // #1.  "https://www.google.com/" -> "Google"
+</TestCases>
+
+Output:
+public String getTitle(String url) throws Throwable {
+    try {
+        // Fetch the HTML document over HTTP
+        Document doc = Jsoup.connect(url).get();
+        // Extract and return the title from the HTML document
+        return doc.title();
+    } catch (IOException e) {
+        // Handle I/O exceptions
+        throw new Exception("Error fetching the URL", e);
+    }
+}

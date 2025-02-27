@@ -1,0 +1,21 @@
+Input:
+<method>
+    Document readXML(File file) throws Throwable
+</method>
+<TestCases>
+    <checker>
+    boolean checker(Document doc) {
+        return doc != null && doc.getFirstChild() != null && ((Element) doc.getFirstChild()).getAttribute("id").equals("popl");
+    }
+    </checker>
+    // #1.  file = File("benchmarkFiles/sypet_28_popl.xml") -> checker(readXML(file)) == true 
+</TestCases>
+
+Output:
+Document readXML(File file) throws Throwable {
+    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+    DocumentBuilder builder = factory.newDocumentBuilder();
+    Document document = builder.parse(file);
+    document.getDocumentElement().normalize();
+    return document;
+}

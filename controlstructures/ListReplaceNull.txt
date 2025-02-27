@@ -1,0 +1,19 @@
+Input:
+<method>
+   void listReplaceNull(List<String> list, String nullStr)
+</method>
+<TestCases>
+    // #1.  (List(null, "", null, "null", null), "<NULL>") -> List("<NULL>", "", "<NULL>", "null", "<NULL>")
+    // #2.  (List(null, null), "<NULL>") -> List("<NULL>", "<NULL>")
+    // #3.  (List(null, ""), "nul") -> List("nul", "")
+    // #4.  (List("abc", null), "null") -> List("abc", "null")
+</TestCases>
+
+Output:
+void listReplaceNull(List < String > list, String nullStr) {
+    for (int i = 0; i < list.size(); i++) {
+        if (list.get(i) == null) {
+            list.set(i, nullStr);
+        }
+    }
+}

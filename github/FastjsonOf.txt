@@ -1,0 +1,23 @@
+Input:
+<method>
+    int fastjsonOf(Feature[] features)
+</method>
+<TestCases>
+    // #1.  Feature[] {Feature.AllowArbitraryCommas, Feature.AutoCloseSource, Feature.UseBigDecimal, Feature.AllowArbitraryCommas, Feature.AllowUnQuotedFieldNames,} -> 0xc5
+    // #2.  Feature[] {Feature.AllowArbitraryCommas} -> 1 << 6
+    // #3.  Feature[] {} -> 0
+    // #4.  null -> 0
+</TestCases>
+
+Output:
+public int fastjsonOf(Feature[] features) {
+    if (features == null) {
+        return 0;
+    }
+
+    int result = 0;
+    for (Feature feature: features) {
+        result |= feature.mask;
+    }
+    return result;
+}

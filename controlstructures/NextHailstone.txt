@@ -1,0 +1,24 @@
+Input:
+<method>
+    int nextHailstone(int num)
+</method>
+<TestCases>
+    // #1.  1 -> 1
+    // #2.  2 -> 1
+    // #3.  3 -> 10
+    // #4.  123456 -> 61728
+    // #5.  1234567 -> 3703702
+    // #6.  500000004 -> 250000002
+    // #7.  500000005 -> 1500000016
+</TestCases>
+
+Output:
+public int nextHailstone(int num) {
+    if (num <= 0) {
+        throw new IllegalArgumentException("Number must be positive");
+    }
+    if (num == 1) {
+        return 1;
+    }
+    return (num % 2 == 0) ? num / 2 : 3 * num + 1;
+}

@@ -1,0 +1,16 @@
+Input:
+<method>
+	Vector2D eigenvalue(RealMatrix arg0, int arg1)
+</method>
+<TestCases>
+	// #1. (Array2DRowRealMatrix(new double[][] { { 0, -20 }, { 10, 10 } }), 0) -> Vector2D(5, 5*Math.sqrt(7))
+	// #2. (Array2DRowRealMatrix(new double[][] { { 0, 2 }, { 2, 0 } }), 1) -> Vector2D(-2, 0)
+</TestCases>
+
+Output:
+Vector2D eigenvalue(RealMatrix matrix, int index) {
+    EigenDecomposition eigenDecomposition = new EigenDecomposition(matrix);
+    double imagEigenvalue = eigenDecomposition.getImagEigenvalue(index);
+    double realEigenvalue = eigenDecomposition.getRealEigenvalue(index);
+    return new Vector2D(realEigenvalue, imagEigenvalue);
+}

@@ -1,0 +1,21 @@
+Input:
+<method>
+     Ellipse2D.Double inscribedCircle(Rectangle2D rect)
+</method>
+<TestCases>
+    // #1.  Rectangle2D.Double(3.4, 5.6, 7.82, 7.81) -> Ellipse2D.Double(3.4, 5.6, 7.81, 7.81)
+    // #2.  Rectangle2D.Double(3.4, 5.6, 7.81, 7.82) -> Ellipse2D.Double(3.4, 5.6, 7.81, 7.81)
+    // #3.  Rectangle2D.Double(0, 5.6, 7.82, 7.81) -> Ellipse2D.Double(0, 5.6, 7.81, 7.81)
+    // #4.  Rectangle2D.Double(3.4, 0, 7.81, 7.82) -> Ellipse2D.Double(3.4, 0, 7.81, 7.81)
+	// #5.  Rectangle2D.Double(1, 0, 12.3, 45.6) -> Ellipse2D.Double(1, 0, 12.3, 12.3)
+	// #6.  Rectangle2D.Double(0, 1, 78.9, 12.3) -> Ellipse2D.Double(0, 1, 12.3, 12.3)
+	// #7.  Rectangle2D.Double(0, 1, 2, 1) -> Ellipse2D.Double(0, 1, 1, 1)
+</TestCases>
+
+Output:
+public Ellipse2D.Double inscribedCircle(Rectangle2D rect) {
+    // The inscribed circle will have its origin at the top-left of the rectangle
+    // The diameter of the circle will be the smaller of the rectangle's width or height
+    double diameter = Math.min(rect.getWidth(), rect.getHeight());
+    return new Ellipse2D.Double(rect.getX(), rect.getY(), diameter, diameter);
+}

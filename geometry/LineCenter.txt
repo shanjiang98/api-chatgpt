@@ -1,0 +1,17 @@
+Input:
+<method>
+     Point2D lineCenter(Line2D line)
+</method>
+<TestCases>
+    // #1.  Line2D.Double(2.3, 4.5, 20, 30) -> Point2D.Double(11.15, 17.25)
+    // #2.  Line2D.Double(2.3, 0, 20, 0) -> Point2D.Double(11.15, 0)
+    // #3.  Line2D.Double(-2, 4.5, 4, 30) -> Point2D.Double(1, 17.25)
+	// #4.  Line2D.Double(2, 4.5, 0, -4.5) -> Point2D.Double(1, 0)
+</TestCases>
+
+Output:
+Point2D lineCenter(Line2D line) {
+    double centerX = (line.getX1() + line.getX2()) / 2;
+    double centerY = (line.getY1() + line.getY2()) / 2;
+    return new Point2D.Double(centerX, centerY);
+}

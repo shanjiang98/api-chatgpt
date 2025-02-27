@@ -1,0 +1,19 @@
+Input:
+<method>
+    ArrayList<String> permuteList(List<String> list, int[] permutation)
+</method>
+<TestCases>
+    // #1.  List("a", "b", "c", "d", "e"), new int[] {3, 2, 5, 4, 1} -> List("c", "b", "e", "d", "a")
+    // #2.  List("a", "b"), new int[] {2, 1} -> List("b", "a")
+    // #3.  List("a"), new int[] {1} -> List("a")
+</TestCases>
+
+Output:
+ArrayList < String > permuteList(List < String > list, int[] permutation) {
+    ArrayList < String > result = new ArrayList < > ();
+    for (int i = 0; i < permutation.length; i++) {
+        int index = permutation[i] - 1;
+        result.add(list.get(index));
+    }
+    return result;
+}

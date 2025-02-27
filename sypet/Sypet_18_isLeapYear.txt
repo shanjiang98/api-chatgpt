@@ -1,0 +1,24 @@
+Input:
+<method>
+    boolean isLeapYear(int year)
+</method>
+<TestCases>
+    // #1. 2000 -> true
+    // #2. 1900 -> false
+    // #3. 2011 -> false
+</TestCases>
+
+Output:
+boolean isLeapYear(int year) {
+    // A year is a leap year if it is divisible by 4,
+    // except for end-of-century years which must be divisible by 400.
+    if (year % 400 == 0) {
+        return true; // Divisible by 400
+    } else if (year % 100 == 0) {
+        return false; // Divisible by 100 but not 400
+    } else if (year % 4 == 0) {
+        return true; // Divisible by 4
+    } else {
+        return false; // Not divisible by 4
+    }
+}

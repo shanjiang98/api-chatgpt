@@ -1,0 +1,17 @@
+Input:
+<method>
+    String elasticsearchMergePaths(String path, String field)
+</method>
+<TestCases>
+    // #1.  "path", "field" -> "path.field"
+    // #2.  "a", "" -> "a."
+    // #3.  "", "field" -> "field"
+</TestCases>
+
+Output:
+public String elasticsearchMergePaths(String path, String field) {
+    if (path.isEmpty()) {
+        return field;
+    }
+    return path + "." + field;
+}

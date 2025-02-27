@@ -1,0 +1,14 @@
+Input:
+<method>
+     boolean isCircle(Ellipse2D ellipse)
+</method>
+<TestCases>
+    // #1.  Ellipse2D.Double(12.3, -45.6, 7.8, 7.9) -> false
+    // #2.  Ellipse2D.Double(12.3, -45.6, 7.8, 7.8) -> true
+    // #3.  Ellipse2D.Double(12.3, -45.6, 7.8, 7.7) -> false
+</TestCases>
+
+Output:
+boolean isCircle(Ellipse2D ellipse) {
+    return ellipse.getWidth() == ellipse.getHeight();
+}

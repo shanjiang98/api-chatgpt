@@ -1,0 +1,30 @@
+Input:
+<method>
+   List<Object> flattenMatrixOrNull(Object[][] mat)
+</method>
+<TestCases>
+    // #1.  (Object[][] {
+                    {1, 2, 3},
+                    {},
+                    {"a", null}
+                }) -> List(1, 2, 3, "a", null
+    // #2.  (Object[][] {
+                    {1, 2},
+                }) -> List(1, 2)
+    // #3.  (Object[][] {
+                    {"!"}
+                }) -> List("!")
+    // #4.  (null) -> List()
+
+
+Output:
+public List < Object > flattenMatrixOrNull(Object[][] mat) {
+    if (mat == null) {
+        return new ArrayList < > ();
+    }
+    List < Object > result = new ArrayList < > ();
+    for (Object[] row: mat) {
+        result.addAll(Arrays.asList(row));
+    }
+    return result;
+}

@@ -1,0 +1,17 @@
+Input:
+<method>
+	double[] solveLinear(double[][] mat, double[] vec)
+</method>
+<TestCases>
+	// #1. ({{3,-1},{1,1}}, {3,5}) -> {2, 3}
+	// #2. ({{1,2,1},{2,-1,3},{3,1,2}}, {7,7,18}) -> {7, 1, -2}
+</TestCases>
+
+Output:
+public double[] solveLinear(double[][] mat, double[] vec) {
+    RealMatrix matrix = new Array2DRowRealMatrix(mat, false);
+    DecompositionSolver solver = new LUDecomposition(matrix).getSolver();
+    RealVector constantsVector = new ArrayRealVector(vec, false);
+    RealVector solution = solver.solve(constantsVector);
+    return solution.toArray();
+}

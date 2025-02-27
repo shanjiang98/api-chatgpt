@@ -1,0 +1,30 @@
+Input:
+<method>
+   Object evaluateByXPath(File file, String query, QName qname) throws Throwable
+</method>
+<TestCases>
+    <checker>
+    boolean checker(Object node) {
+        return node != null && node instanceof Node && ((Node) node).getNodeName().equals("div");
+    }
+    </checker>
+    // #1.  file = File("benchmarkFiles/sypet_29_doc.xml"), query = "/html/body/div[@id='container']", qname = XPathConstants.NODE -> checker(evaluateByXPath(file, query, qname)) == true 
+</TestCases>
+
+Output:
+public Object evaluateByXPath(File file, String query, QName qname) throws Throwable {
+    // Load the XML document
+    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+    DocumentBuilder builder = factory.newDocumentBuilder();
+    Document doc = builder.parse(file);
+
+    // Create an XPath object
+    XPathFactory xPathFactory = XPathFactory.newInstance();
+    XPath xpath = xPathFactory.newXPath();
+
+    // Compile the XPath expression
+    XPathExpression expr = xpath.compile(query);
+
+    // Evaluate the expression and return the result
+    return expr.evaluate(doc, qname);
+}

@@ -1,0 +1,28 @@
+Input:
+<method>
+   String zxingParseName(String name)
+</method>
+<TestCases>
+    // #1.  "Last,First" -> "First Last"
+    // #2.  "ab,cde,f" -> "cde,f ab"
+    // #3.  "abcd," -> " abcd"
+    // #4.  ",abc,d" -> "abc,d "
+    // #5.  "abcd" -> "abcd"
+    // #6.  "" -> ""
+</TestCases>
+
+Output:
+public String zxingParseName(String name) {
+    // Split the input string by the comma delimiter
+    String[] parts = name.split(",", 2);
+
+    // If there is no comma, return the original string
+    if (parts.length == 1) {
+        return name;
+    }
+
+    // Reconstruct the string in "First Last" format
+    String firstPart = parts[0]; // The part before the comma
+    String lastPart = parts[1]; // The part after the comma
+    return lastPart + " " + firstPart;
+}

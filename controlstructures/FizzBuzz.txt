@@ -1,0 +1,31 @@
+Input:
+<method>
+   String fizzBuzz(int num)
+</method>
+<TestCases>
+    // #1.  (3) -> "Fizz"
+    // #2.  (21) -> "Fizz"
+    // #3.  (84) -> "Fizz"
+    // #4.  (5) -> "Buzz"
+    // #5.  (40) -> "Buzz"
+    // #6.  (85) -> "Buzz"
+    // #7.  (28) -> "28"
+    // #8.  (47) -> "47"
+    // #9.  (61) -> "61"
+    // #10.  (15) -> "FizzBuzz"
+    // #11.  (60) -> "FizzBuzz"
+    // #12.  (75) -> "FizzBuzz"
+</TestCases>
+
+Output:
+public String fizzBuzz(int num) {
+    if (num % 15 == 0) {
+        return "FizzBuzz";
+    } else if (num % 3 == 0) {
+        return "Fizz";
+    } else if (num % 5 == 0) {
+        return "Buzz";
+    } else {
+        return String.valueOf(num);
+    }
+}

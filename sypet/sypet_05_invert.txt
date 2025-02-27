@@ -1,0 +1,41 @@
+Input:
+<method>
+	DoubleMatrix2D invert(DoubleMatrix2D mat)
+</method>
+<TestCases>
+    <checker>
+    bool checker(DoubleMatrix2D mat) {
+        if(res2 == null)
+            return false;
+
+        double[][] mat2 = new double[][]{{-2,1},{1.5,-0.5}};
+        double[][] res = res2.toArray();
+
+        if(mat2.length != res.length || mat2[0].length != res[0].length)
+            return false;
+
+        for(int i=0; i<mat2.length; i++){
+            for(int j=0; j<mat2[0].length; j++){
+                if(Math.abs(mat2[i][j] - res[i][j]) > 0.00000005){
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+    </checker>
+	// #1. mat = new DoubleMatrix2D(new double[][]{{1,2},{3,4}}) }) -> checker(invert(mat)) == true
+</TestCases>
+
+Output:
+public DoubleMatrix2D invert(DoubleMatrix2D mat) {
+    Algebra algebra = new Algebra();
+
+    try {
+        return algebra.inverse(mat);
+    } catch (Exception e) {
+        // If the matrix is not invertible, return null
+        return null;
+    }
+}

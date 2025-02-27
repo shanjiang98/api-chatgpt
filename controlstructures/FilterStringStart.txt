@@ -1,0 +1,22 @@
+Input:
+<method>
+   ArrayList<String> filterStringStart(List<String> list, String start)
+</method>
+<TestCases>
+    // #1.  (List("start", "startswith", "xstart", "Start", "start 123", ""), "start") -> List("start", "startswith", "start 123")
+    // #2.  (List("aaa", "aaAaaa"), "aa") -> List("aaa", "aaAaaa")
+    // #3.  (List("aaa", "aAaaaa"), "aa") -> List("aaa")
+    // #4.  (List("aba", "aaAaaa"), "aa") -> List("aaAaaa")
+    // #5.  (List("aba", "aAaaaa"), "aa") -> List()
+</TestCases>
+
+Output:
+ArrayList < String > filterStringStart(List < String > list, String start) {
+    ArrayList < String > result = new ArrayList < > ();
+    for (String str: list) {
+        if (str.startsWith(start)) {
+            result.add(str);
+        }
+    }
+    return result;
+}

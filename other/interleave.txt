@@ -1,0 +1,25 @@
+Input:
+<method>
+	Queue<Integer> interleave(Queue<Integer> arg0, Queue<Integer>)
+</method>
+<TestCases>
+	// #1. ([1, 2, 3, 4], [5, 6, 7, 8]) -> [1, 2, 3, 4, 5, 6, 7, 8]
+    // #2. ([1], [2, 3]) -> [1, 2, 3]
+</TestCases>
+
+Output:
+Queue < Integer > interleave(Queue < Integer > q1, Queue < Integer > q2) {
+    Queue < Integer > resultQueue = new LinkedList < > ();
+
+    // Interleave elements from both queues
+    while (!q1.isEmpty() || !q2.isEmpty()) {
+        if (!q1.isEmpty()) {
+            resultQueue.add(q1.poll());
+        }
+        if (!q2.isEmpty()) {
+            resultQueue.add(q2.poll());
+        }
+    }
+
+    return resultQueue;
+}

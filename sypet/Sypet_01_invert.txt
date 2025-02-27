@@ -1,0 +1,14 @@
+Input:
+<method>
+	RealMatrix invert(RealMatrix matrix)
+</method>
+<TestCases>
+	// #1. Array2DRowRealMatrix(new double[][]{{1,2,3},{4,5,6}}) -> Array2DRowRealMatrix(new double[][]{{-0.944444,0.444444},{-0.111111,0.111111},{0.722222,-0.222222}})
+</TestCases>
+
+Output:
+public RealMatrix invert(RealMatrix matrix) {
+    // Compute the pseudo-inverse using Singular Value Decomposition
+    SingularValueDecomposition svd = new SingularValueDecomposition(matrix);
+    return svd.getSolver().getInverse();
+}

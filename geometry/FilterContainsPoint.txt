@@ -1,0 +1,21 @@
+Input:
+<method>
+     List<Ellipse2D> filterContainsPoint(Ellipse2D[] shapes, Point2D point)
+</method>
+<TestCases>
+    // #1.  Ellipse2D[] {new Ellipse2D.Double(-4, -8, 7, 14),new Ellipse2D.Double(-9, -8, 10, 10.5),new Ellipse2D.Double(-8, -9, 10, 10.1),new Ellipse2D.Double(-8, -9, 10, 9.5),new Ellipse2D.Double(-8, -9, 10.5, 10),new Ellipse2D.Double(-9, -8.5, 10, 10),new Ellipse2D.Double(-8, -8.5, 10, 10),}, new Point2D.Double() -> List(new Ellipse2D.Double(-4, -8, 7, 14),new Ellipse2D.Double(-9, -8, 10, 10.5),new Ellipse2D.Double(-8, -9, 10, 10.1),new Ellipse2D.Double(-8, -9, 10.5, 10),new Ellipse2D.Double(-8, -8.5, 10, 10))
+    // #2.  Ellipse2D[] {new Ellipse2D.Double(11, 43, 111, 6.6),new Ellipse2D.Double(11, 43, 111, 4.3),}, new Point2D.Double(12.3, 45.6) -> List(new Ellipse2D.Double(11, 43, 111, 6.6),new Ellipse2D.Double(11, 43, 111, 4.3))
+    // #3.  Ellipse2D[] {new Ellipse2D.Double(11, 43, 111, 6.7),new Ellipse2D.Double(11, 43, 111, 4.3),}, new Point2D.Double(12.3, 45.6) -> List(new Ellipse2D.Double(11, 43, 111, 4.3))
+    // #4.  Ellipse2D[] { new Ellipse2D.Double(34, 12, 10, 10) }, new Point2D.Double(38, 18) -> List(new Ellipse2D.Double(34, 12, 10, 10))
+</TestCases>
+
+Output:
+public List < Ellipse2D > filterContainsPoint(Ellipse2D[] shapes, Point2D point) {
+    List < Ellipse2D > result = new ArrayList < > ();
+    for (Ellipse2D shape: shapes) {
+        if (shape.contains(point)) {
+            result.add(shape);
+        }
+    }
+    return result;
+}

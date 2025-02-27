@@ -1,0 +1,26 @@
+Input:
+<method>
+   boolean isIncreasing(double[] arr)
+</method>
+<TestCases>
+    // #1.  (double[] {67, 67.8, 67.89, 67.891, 70, 71}) -> true
+    // #2.  (double[] {67, 67.8, 67.89, 67.891, 71, 71}) -> false
+    // #3.  (double[] {67, 67.8, 67.89, 73, 70, 71}) -> false
+    // #4.  (double[] {67, 67.8, 67.89, 67.89, 70, 71}) -> false
+    // #5.  (double[] {-68, -67.8, -67}) -> true
+    // #6.  (double[] {-68, -68.1, -67}) -> false
+    // #7.  (double[] {67.8, 67.9} -> true
+    // #8.  (double[] {67.8, 67.3} -> false
+    // #9.  (double[] {67.8} -> true
+    // #10.  (double[] {} -> true
+</TestCases>
+
+Output:
+boolean isIncreasing(double[] arr) {
+    for (int i = 1; i < arr.length; i++) {
+        if (arr[i] <= arr[i - 1]) {
+            return false;
+        }
+    }
+    return true;
+}

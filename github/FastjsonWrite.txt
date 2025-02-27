@@ -1,0 +1,44 @@
+Input:
+<method>
+   void fastjsonWrite(SerializeWriter out, Object object)
+</method>
+<TestCases>
+    <checker>
+    boolean checker(SerializeWriter out) {
+        try {
+            return out.toString().equals("[\"a12\",\"b34\"]");
+        } catch (Exception e) {}
+        return false;
+    }
+
+    boolean checker2(SerializeWriter out) {
+        try {
+            return out.toString().equals("123456789");
+        } catch (Exception e) {}
+        return false;
+    }
+
+    boolean checker3(SerializeWriter out) {
+        try {
+            return out.toString().equals("\"FastjsonWrite\"");
+        } catch (Exception e) {}
+        return false;
+    }
+    </checker>
+    // #1.  out = new SerializeWriter(1), object = new Object[] { "a12", "b34" } -> checker(out) == true
+    // #2.  out = new SerializeWriter(1), object = new Date(123456789L) -> checker2(out) == true
+    // #3.  out = new SerializeWriter(1), object = this } -> checker3(out) == true
+</TestCases>
+
+Output:
+public void fastjsonWrite(SerializeWriter out, Object object) {
+    JSONSerializer serializer = new JSONSerializer(out);
+
+    if (object instanceof Object[]) {
+        serializer.write((Object[]) object);
+    } else if (object instanceof Date) {
+        serializer.write((Date) object);
+    } else {
+        serializer.write(object);
+    }
+}

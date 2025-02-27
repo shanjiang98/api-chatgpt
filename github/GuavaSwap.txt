@@ -1,0 +1,22 @@
+Input:
+<method>
+     void guavaSwap(Object[] array, int i, int j)
+</method>
+<TestCases>
+    // #1.  (Object[] {"abc", 123, null, false, "", 1.2, "?"}, 3, 5) -> Object[] {"abc", 123, null, 1.2, "", false, "?"}
+    // #2.  (Object[] {"abc", 123, null, false, "", 1.2, "?"}, 2, 5) -> Object[] {"abc", 123, 1.2, false, "", null, "?"}
+    // #3.  (Object[] {"abc", 123, null, false, "", 1.2, "?"}, 5, 2) -> Object[] {"abc", 123, 1.2, false, "", null, "?"}
+    // #4.  (Object[] {"abc", 123}, 0, 1) -> Object[] {123, "abc"}
+    // #5.  (Object[] {"abc", null}, 0, 1) -> Object[] {null, "abc"}
+    // #6.  (Object[] {null, "abc"}, 0, 1) -> Object[] {"abc", null}
+</TestCases>
+
+Output:
+public static void guavaSwap(Object[] array, int i, int j) {
+    if (array == null || i < 0 || j < 0 || i >= array.length || j >= array.length || i == j) {
+        return;
+    }
+    Object temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+}

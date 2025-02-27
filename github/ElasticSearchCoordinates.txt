@@ -1,0 +1,23 @@
+Input:
+<method>
+   Coordinate[] elasticSearchCoordinates(Edge component, Coordinate[] coordinates)
+</method>
+<TestCases>
+    // #1.  Edge head = new Edge(new Coordinate(11, 22), null);
+            Edge rest = new Edge(new Coordinate(34, 56), new Edge(new Coordinate(7, 8), head));
+            head.setNext(rest);
+            (component = head, coordinates = new Coordinate[5]) -> Coordinate[] {new Coordinate(34, 56), new Coordinate(7, 8), new Coordinate(11, 22), new Coordinate(34, 56), new Coordinate(7, 8)}
+    // #2.  (component = Edge(new Coordinate(11, 22), new Edge(new Coordinate(34, 56), new Edge(new Coordinate(7, 8), null))),
+             coordinates = new Coordinate[2]) -> new Coordinate[] {new Coordinate(34, 56), new Coordinate(7, 8)}
+    // #3.  (component = Edge(new Coordinate(11, 22), new Edge(new Coordinate(34, 56), new Edge(new Coordinate(7, 8), null))),
+             coordinates = new Coordinate[1]) -> new Coordinate[] {new Coordinate(34, 56)}
+</TestCases>
+
+Output:
+static Coordinate[] solution(Edge component, Coordinate[] coordinates) {
+    for (int i = 0; i < coordinates.length; i++) {
+        component = component.next;
+        coordinates[i] = component.coordinate;
+    }
+    return coordinates;
+}

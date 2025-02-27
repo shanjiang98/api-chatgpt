@@ -1,0 +1,23 @@
+Input:
+<method>
+	DoubleMatrix2D getOuterProduct(DoubleMatrix1D vec1, DoubleMatrix1D vec2)
+</method>
+<TestCases>
+	// #1. (DoubleMatrix1D{1, 1, 1}, DoubleMatrix1D{1, 2, 3}) -> DoubleMatrix2D(new double[][] { { 1, 2, 3 }, { 1, 2, 3 }, { 1, 2, 3 } })
+</TestCases>
+
+Output:
+public DoubleMatrix2D getOuterProduct(DoubleMatrix1D vec1, DoubleMatrix1D vec2) {
+    int rows = vec1.size();
+    int cols = vec2.size();
+    DoubleMatrix2D result = new DenseDoubleMatrix2D(rows, cols);
+
+    for (int i = 0; i < rows; i++) {
+        double v1Element = vec1.getQuick(i);
+        for (int j = 0; j < cols; j++) {
+            double v2Element = vec2.getQuick(j);
+            result.setQuick(i, j, v1Element * v2Element);
+        }
+    }
+    return result;
+}

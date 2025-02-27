@@ -1,0 +1,26 @@
+Input:
+<method>
+   String zxingTrim(String s)
+</method>
+<TestCases>
+    // #1.  "  \tabc \tdef\n \t  " -> "abc \tdef"
+    // #2.  "  \t \t\n \t  " -> null
+    // #3.  null -> null
+</TestCases>
+
+Output:
+public static String zxingTrim(String s) {
+    if (s == null) {
+        return null;
+    }
+
+    // Trim the input string
+    String trimmed = s.trim();
+
+    // Check if the trimmed string is empty
+    if (trimmed.isEmpty()) {
+        return null;
+    }
+
+    return trimmed;
+}

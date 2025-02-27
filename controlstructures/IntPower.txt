@@ -1,0 +1,23 @@
+Input:
+<method>
+   int intPower(int base, int exp)
+</method>
+<TestCases>
+    // #1.  (7, 11) -> 1977326743
+    // #2.  (11, 4) -> 14641
+    // #3.  (-101, 3) -> -1030301
+    // #4.  (-11111, 2) -> 123454321
+    // #5.  (123, 1) -> 123
+    // #6.  (123, 0) -> 1
+    // #7.  (1, 10) -> 0
+    // #8.  (0, 10) -> 0
+</TestCases>
+
+Output:
+int intPower(int base, int exp) {
+    int result = 1;
+    for (int i = 0; i < exp; i++) {
+        result *= base;
+    }
+    return result;
+}

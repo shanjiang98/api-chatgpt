@@ -1,0 +1,21 @@
+Input:
+<method>
+    void setDequeSize(Deque<Object> deque, int size, Object element)
+</method>
+<TestCases>
+    // #1.  Queue("a", "b", "c", "d", "e"), 9, "xyz" -> Queue("a", "b", "c", "d", "e", "xyz", "xyz", "xyz", "xyz")
+    // #2.  Queue("a", "b", "c", "d", "e"), 6, "xyz" -> Queue("a", "b", "c", "d", "e", "xyz")
+    // #3.  Queue("a", "b", "c", "d", "e"), 4, "xyz" -> Queue("a", "b", "c", "d")
+    // #4.  Queue("a", "b", "c", "d", "e"), 1, "xyz" -> Queue("a")
+    // #5.  Queue(), 3, "a" -> Queue("a", "a", "a")
+</TestCases>
+
+Output:
+void setDequeSize(Deque < Object > deque, int size, Object element) {
+    while (deque.size() < size) {
+        deque.addLast(element); // Add the element to the end if the current size is less than the target size
+    }
+    while (deque.size() > size) {
+        deque.removeLast(); // Remove elements from the end if the current size is greater than the target size
+    }
+}

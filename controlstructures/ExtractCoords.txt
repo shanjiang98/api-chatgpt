@@ -1,0 +1,21 @@
+Input:
+<method>
+   HashSet<Integer> extractCoords(List<Point> points)
+</method>
+<TestCases>
+    // #1.  (List(new Point(123, 234), new Point(-12, -23), new Point(), new Point(-12, 99))) -> Set(123, 234, -12, -23, 0, 99)
+    // #2.  (List(new Point(123, 234))) -> Set(123, 234)
+    // #3.  (List(new Point(123, 0))) -> Set(0, 123)
+    // #4.  (List(new Point(0, 234))) -> Set(0, 234)
+    // #5.  (List(new Point())) -> Set(0)
+</TestCases>
+
+Output:
+public HashSet < Integer > extractCoords(List < Point > points) {
+    HashSet < Integer > coords = new HashSet < > ();
+    for (Point point: points) {
+        coords.add(point.x);
+        coords.add(point.y);
+    }
+    return coords;
+}

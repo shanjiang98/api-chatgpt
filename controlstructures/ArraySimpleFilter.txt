@@ -1,0 +1,24 @@
+Input:
+<method>
+   void arraySimpleFilter(String[] arr, Set<String> filter)
+</method>
+<TestCases>
+    // #1.  (String[] {"bad", "awesome", "terrible", "", "Rude", "badly", "rude", "rude.."}, Set("terrible", "bad", "rude")) -> String[] {"", "awesome", "", "", "Rude", "badly", "", "rude.."}
+    // #2.  (String[] {"terribl", "bad"}, Set("terrible", "bad", "rude")) -> String[] {"terribl", ""}
+    // #3.  (String[] {"bad", "BAD"}, Set("terrible", "bad", "rude")) -> String[] {"", "BAD"}
+    // #4.  (String[] {"not-bad!", "rude "}, Set("terrible", "bad", "rude")) -> String[] {"not-bad!", "rude "}
+</TestCases>
+
+Output:
+public void arraySimpleFilter(String[] arr, Set < String > filter) {
+    if (arr == null || filter == null) {
+        return;
+    }
+
+    for (int i = 0; i < arr.length; i++) {
+        // Check if the current string is exactly in the filter set
+        if (filter.contains(arr[i])) {
+            arr[i] = "";
+        }
+    }
+}

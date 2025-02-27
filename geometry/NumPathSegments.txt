@@ -1,0 +1,23 @@
+Input:
+<method>
+     int numPathSegments(PathIterator it)
+</method>
+<TestCases>
+    // #1.  Area area = new Area(new Rectangle2D.Double(6, 7, 8, 9)); area.add(new Area(new Ellipse2D.Double(5, 7, 2, 2))); it = area.getPathIterator(null); -> 7
+    // #2.  Area area = new Area(new Rectangle2D.Double(6, 7, 8, 9)); area.add(new Area(new Ellipse2D.Double(5, 7.1, 2, 2))); it = area.getPathIterator(null); -> 8
+    // #3.  Line2D.Double(6, 7, 8, 9).getPathIterator(null) -> 2
+    // #4.  Rectangle2D.Double(6, 7, 8, 9).getPathIterator(null) -> 6
+    // #5.  RoundRectangle2D.Double(6, 7, 8, 9, 0.5, 0.6).getPathIterator(null) -> 10
+</TestCases>
+
+Output:
+public int numPathSegments(PathIterator it) {
+    int count = 0;
+    double[] coords = new double[6];
+    while (!it.isDone()) {
+        it.currentSegment(coords);
+        count++;
+        it.next();
+    }
+    return count;
+}

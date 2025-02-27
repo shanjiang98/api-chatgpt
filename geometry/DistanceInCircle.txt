@@ -1,0 +1,30 @@
+Input:
+<method>
+     double distanceInCircle(Point2D point, Ellipse2D circle)
+</method>
+<TestCases>
+    // #1.  Point2D.Double(3.6, -5), Ellipse2D.Double(-7, -6, 20, 20) -> 9.019977827023745
+    // #2.  Point2D.Double(36.9, 49.12), new Ellipse2D.Double(-1.1*61.5, -1.1*61.5, 2.2*61.5, 2.2*61.5) -> 61.43601875121792
+    // #3.  Point2D.Double(36.9, 49.12), new Ellipse2D.Double(-0.9*61.5, -0.9*61.5, 1.8*61.5, 1.8*61.5) -> Double.POSITIVE_INFINITY
+    // #4.  Point2D.Double(36.9 + 45.6, 49.12), new Ellipse2D.Double(-1.1*61.5 + 45.6, -1.1*d, 2.2*61.5, 2.2*61.5) -> 61.43601875121792
+    // #5.  Point2D.Double(36.9, 49.12 + 45.6), new Ellipse2D.Double(-1.1*61.5, -1.1*61.5 + 45.6, 2.2*61.5, 2.2*61.5) -> 61.43601875121792
+</TestCases>
+
+Output:
+public double distanceInCircle(Point2D point, Ellipse2D circle) {
+    double centerX = circle.getCenterX();
+    double centerY = circle.getCenterY();
+    double radiusX = circle.getWidth() / 2;
+    double radiusY = circle.getHeight() / 2;
+
+    double dx = (point.getX() - centerX) / radiusX;
+    double dy = (point.getY() - centerY) / radiusY;
+
+    double distanceSquared = dx * dx + dy * dy;
+
+    if (distanceSquared <= 1) {
+        return Math.sqrt(distanceSquared) * radiusX;
+    } else {
+        return Double.POSITIVE_INFINITY;
+    }
+}

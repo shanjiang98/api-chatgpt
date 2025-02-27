@@ -1,0 +1,17 @@
+Input:
+<method>
+     double rectanglePerimeter(Rectangle2D rect)
+</method>
+<TestCases>
+    // #1.  Rectangle2D.Double(1.2, 3.4, 5.6, 7.8) -> 26.8
+    // #2.  Rectangle2D.Double(1.2, 3.4, 5.6, 0) -> 11.2
+    // #3.  Rectangle2D.Double(1.2, 3.4, 0, 7.8) -> 15.6
+</TestCases>
+
+Output:
+public double rectanglePerimeter(Rectangle2D rect) {
+    // Perimeter of a rectangle is calculated as 2 * (width + height)
+    double width = rect.getWidth();
+    double height = rect.getHeight();
+    return 2 * (width + height);
+}

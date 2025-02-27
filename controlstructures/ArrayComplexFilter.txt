@@ -1,0 +1,32 @@
+Input:
+<method>
+   void arrayComplexFilter(String[] arr, Set<String> filter)
+</method>
+<TestCases>
+    // #1.  (String[] {"Very bad service", "Awesome!", "", "terrible and rude...", "Food was great.", "not-bad :)"}, Set("terrible", "bad", "rude")) -> String[] {"", "Awesome!", "", "", "Food was great.", ""}
+    // #2.  (String[] {"Very Bad service", "rude"}, Set("terrible", "Bad", "rude")) -> String[] {"", ""}
+    // #3.  (String[] {"Very Bad service", "Very bad service"}, Set("terrible", "Bad", "rude")) -> String[] {"", "Very bad service"}
+    // #4.  (String[] {"Greater", "rible"}, Set("terrible", "bad", "rude")) -> String[] {"Greater", "rible"}
+</TestCases>
+
+Output:
+public static void arrayComplexFilter(String[] arr, Set<String> filter) {
+    for (int i = 0; i < arr.length; i++) {
+        // Convert the current string to lowercase for case insensitive comparison
+        String lowerCaseString = arr[i].toLowerCase();
+        boolean containsFilteredWord = false;
+
+        // Check if any of the filter words are contained in the current string
+        for (String word : filter) {
+            if (lowerCaseString.contains(word.toLowerCase())) {
+                containsFilteredWord = true;
+                break;
+            }
+        }
+
+        // If any filter word is found, replace the string with an empty string
+        if (containsFilteredWord) {
+            arr[i] = "";
+        }
+    }
+}

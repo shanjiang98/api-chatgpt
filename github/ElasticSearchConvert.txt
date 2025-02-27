@@ -1,0 +1,25 @@
+Input:
+<method>
+   double elasticSearchConvert(double distance, DistanceUnit from, DistanceUnit to)
+</method>
+<TestCases>
+    // #1.  (10.0, DistanceUnit.MILES, DistanceUnit.KILOMETERS) -> 16.09344
+    // #2.  (10.0, DistanceUnit.KILOMETERS, DistanceUnit.MILES) -> 6.21371192
+    // #3.  (10.0, DistanceUnit.METERS, DistanceUnit.KILOMETERS) -> 0.01
+    // #4.  (10.0, DistanceUnit.MILES, DistanceUnit.MILES) -> 10.0
+    // #5.  (10.0, DistanceUnit.MILES, DistanceUnit.NAUTICALMILES) -> 8.689762
+    // #6.  (10.0, DistanceUnit.KILOMETERS, DistanceUnit.KILOMETERS) -> 10.0
+    // #7.  (1000.0, DistanceUnit.METERS, DistanceUnit.KILOMETERS) -> 1.0
+    // #8.  (1.0, DistanceUnit.KILOMETERS, DistanceUnit.METERS) -> 1000.0
+    // #9.  (12.34, null, null) -> 12.34
+    // #10.  (Double.MAX_VALUE, DistanceUnit.MILES, DistanceUnit.MILES) -> Double.MAX_VALUE
+</TestCases>
+
+Output:
+public static double elasticSearchConvert(double distance, DistanceUnit from, DistanceUnit to) {
+    if (from == null || to == null || from == to) {
+        return distance;
+    }
+    // Convert the distance using the conversion method provided by DistanceUnit class
+    return from.convert(distance, to);
+}

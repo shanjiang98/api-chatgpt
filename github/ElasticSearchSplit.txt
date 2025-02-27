@@ -1,0 +1,37 @@
+Input:
+<method>
+   String[] elasticsearchSplit(String toSplit, int index, String[] result)
+</method>
+<TestCases>
+    // #1.  "Hello world!", 5, new String[] {"some", "existing", "junk"} -> String[] {"Hello", "world!", "junk"}
+    // #2.  "Hello world!", 11, new String[] {"some", "", "junk"} -> String[] {"Hello world", "", "junk"}
+    // #3.  "Hello world!", 0, new String[] {"", "existing", "junk"} -> String[] {"", "ello world!", "junk"}
+    // #4.  " ", 0, new String[] {"some", "", "junk"} -> String[] {"", "", "junk"}
+    // #5.  " ", 0, new String[] {"", "existing", "junk"} -> String[] {"", "", "junk"}
+</TestCases>
+
+Output:
+public static String[] elasticsearchSplit(String toSplit, int index, String[] result) {
+    // Validate the input
+    if (toSplit == null || index < 0 || index > toSplit.length() || result == null || result.length == 0) {
+        throw new IllegalArgumentException("Invalid input parameters");
+    }
+
+    // Split the string at the specified index
+    String firstPart = toSplit.substring(0, index);
+    String secondPart = toSplit.substring(index);
+
+    // Create a new array to store the result
+    String[] newResult = new String[result.length];
+
+    // Copy the existing result array to the new array
+    System.arraycopy(result, 0, newResult, 0, result.length);
+
+    // Replace the specified index in the result array with the split parts
+    newResult[0] = firstPart;
+    if (result.length > 1) {
+        newResult[1] = secondPart;
+    }
+
+    return newResult;
+}

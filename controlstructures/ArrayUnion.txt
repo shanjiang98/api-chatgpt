@@ -1,0 +1,18 @@
+Input:
+<method>
+   Set<String> arrayUnion(String[] arr1, String[] arr2)
+</method>
+<TestCases>
+    // #1.  (String[] {"abc", "", "hi", "1", "x"}, String[] {"x!", "hi", "hi", "abc", "1", "def"}) -> Set("abc", "", "hi", "1", "x", "x!", "def")
+    // #2.  (String[] {"abc", "x", "hi"}, String[] {"hi", "x"}) -> Set("abc", "x", "hi")
+    // #3.  (String[] {"hi"}, String[] {"hi", "y", "abc"}) -> Set("hi", "y", "abc")
+    // #4.  (String[] {}, String[] {}) -> Set()
+</TestCases>
+
+Output:
+Set < String > arrayUnion(String[] arr1, String[] arr2) {
+    Set < String > resultSet = new HashSet < > ();
+    resultSet.addAll(Arrays.asList(arr1));
+    resultSet.addAll(Arrays.asList(arr2));
+    return resultSet;
+}

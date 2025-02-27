@@ -1,0 +1,22 @@
+Input:
+<method>
+     void rotatePointDegrees(Point2D point, double theta)
+</method>
+<TestCases>
+    // #1.  new Point2D.Double(3, 0), 60.0 -> Point2D.Double(1.5, 1.5 * Math.sqrt(3))
+    // #2.  Point2D.Double(3, 0), 180.0 / Math.PI -> Point2D.Double(3 * Math.cos(1), 3 * Math.sin(1))
+</TestCases>
+
+Output:
+public void rotatePointDegrees(Point2D point, double theta) {
+    double radians = Math.toRadians(theta); // Convert degrees to radians
+    double x = point.getX();
+    double y = point.getY();
+
+    // Calculate the new coordinates after rotation
+    double newX = x * Math.cos(radians) - y * Math.sin(radians);
+    double newY = x * Math.sin(radians) + y * Math.cos(radians);
+
+    // Set the new coordinates to the point
+    point.setLocation(newX, newY);
+}

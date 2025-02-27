@@ -1,0 +1,18 @@
+Input:
+<method>
+     Rectangle2D scaleRectangle(Rectangle2D rect, double scaleX, double scaleY)
+</method>
+<TestCases>
+    // #1.  Rectangle2D.Double(1.2, 3.4, 5.6, 7.8), 0.5, 0.4 -> Rectangle2D.Double(0.6, 1.36, 2.8, 3.12)
+    // #2.  Rectangle2D.Double(1.2, 3.4, 5.6, 7.8), 1.0, 0.0 -> Rectangle2D.Double(1.2, 0.0, 5.6, 0.0)
+    // #3.  Rectangle2D.Double(1.2, 3.4, 5.6, 7.8), 0.0, 1.0 -> Rectangle2D.Double(0.0, 3.4, 0.0, 7.8)
+</TestCases>
+
+Output:
+public Rectangle2D scaleRectangle(Rectangle2D rect, double scaleX, double scaleY) {
+    double newX = rect.getX() * scaleX;
+    double newY = rect.getY() * scaleY;
+    double newWidth = rect.getWidth() * scaleX;
+    double newHeight = rect.getHeight() * scaleY;
+    return new Rectangle2D.Double(newX, newY, newWidth, newHeight);
+}

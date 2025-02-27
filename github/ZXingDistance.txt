@@ -1,0 +1,19 @@
+Input:
+<method>
+   float zxingDistance(ResultPoint a, ResultPoint b)
+</method>
+<TestCases>
+    // #1.  ResultPoint(12, 34), ResultPoint(42, -6) -> 50f
+    // #2.  ResultPoint(30, 40), ResultPoint(0, 0) -> 50f
+    // #3.  ResultPoint(0, 0), ResultPoint(30, 40) -> 50f
+</TestCases>
+
+Output(Failed test case 1):
+// Implement the Method to Pass All Test Cases
+public float zxingDistance(ResultPoint a, ResultPoint b) {
+    // Calculate the distance between two points using the Euclidean distance formula
+    float distanceA = (float) Math.sqrt(a.getX() * a.getX() + a.getY() * a.getY());
+    float distanceB = (float) Math.sqrt(b.getX() * b.getX() + b.getY() * b.getY());
+    // Return the maximum distance
+    return Math.max(distanceA, distanceB);
+}

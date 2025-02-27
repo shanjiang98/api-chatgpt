@@ -1,0 +1,32 @@
+Input:
+<method>
+	boolean isPalindrome(Queue<Character> queue)
+</method>
+<TestCases>
+	// #1. [] -> true
+    // #2. ['a', 'c', 'c'] -> false
+    // #3. ['r', 'b', 'g', 'b','r'] -> true
+    // #4. ['c'] -> true
+	// #5. ['c', 'c'] -> true
+	// #6. ['b', 'c'] -> false
+</TestCases>
+
+Output:
+boolean isPalindrome(Queue < Character > queue) {
+    Stack < Character > stack = new Stack < > ();
+    Queue < Character > queueCopy = new LinkedList < > (queue);
+
+    // Push all characters from the queue into the stack
+    while (!queueCopy.isEmpty()) {
+        stack.push(queueCopy.poll());
+    }
+
+    // Compare characters from the original queue and the stack
+    for (Character ch: queue) {
+        if (!ch.equals(stack.pop())) {
+            return false;
+        }
+    }
+
+    return true;
+}

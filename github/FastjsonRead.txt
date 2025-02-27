@@ -1,0 +1,49 @@
+Input:
+<method>
+     Object fastjsonRead(String json, String path)
+</method>
+<TestCases>
+    // #1.  ("{\"user\":[{\"amount\":1.11,\"isadmin\":true,\"age\":18},{\"amount\":0.22,\"isadmin\":false,\"age\":28}]}", "$.user[age = 18]") -> {Assert.assertEquals(1, array.size()); Assert.assertTrue(1.11D == array.getJSONObject(0).getDoubleValue("amount")); Assert.assertTrue(array.getJSONObject(0).getBoolean("isadmin")); Assert.assertTrue(18 == array.getJSONObject(0).getIntValue("age"));}
+    // #2.  ("{\"user\":[{\"amount\":1.11,\"isadmin\":true,\"age\":18},{\"amount\":0.22,\"isadmin\":false,\"age\":28}]}", "$.user") -> {Assert.assertEquals(2, array.size()); Assert.assertTrue(1.11D == array.getJSONObject(0).getDoubleValue("amount")); Assert.assertTrue(array.getJSONObject(0).getBoolean("isadmin")); Assert.assertTrue(18 == array.getJSONObject(0).getIntValue("age")); Assert.assertTrue(0.22D == array.getJSONObject(1).getDoubleValue("amount")); Assert.assertFalse(array.getJSONObject(1).getBoolean("isadmin")); Assert.assertTrue(28 == array.getJSONObject(1).getIntValue("age"));}
+    // #3.  ("{\"user\":[{\"amount\":1.11,\"isadmin\":true,\"age\":18},{\"amount\":0.22,\"isadmin\":false,\"age\":28}]}", "$.user[isadmin = true]") -> {Assert.assertEquals(1, array.size()); Assert.assertTrue(1.11D == array.getJSONObject(0).getDoubleValue("amount")); Assert.assertTrue(array.getJSONObject(0).getBoolean("isadmin")); Assert.assertTrue(18 == array.getJSONObject(0).getIntValue("age"));}
+    // #4.  ("{\"user\":[{\"amount\":1.11,\"isadmin\":true,\"age\":18},{\"amount\":0.22,\"isadmin\":false,\"age\":28}]}", "$.user[isadmin = false]") -> {Assert.assertEquals(1, array.size()); Assert.assertTrue(0.22D == array.getJSONObject(0).getDoubleValue("amount")); Assert.assertFalse(array.getJSONObject(0).getBoolean("isadmin")); Assert.assertTrue(28 == array.getJSONObject(0).getIntValue("age"));}
+    // #5.  ("{\"user\":[{\"amount\":1.11,\"isadmin\":true,\"age\":18},{\"amount\":0.22,\"isadmin\":false,\"age\":28}]}", "$.user[amount = 0.22]") -> {Assert.assertEquals(1, array.size()); Assert.assertTrue(0.22D == array.getJSONObject(0).getDoubleValue("amount")); Assert.assertFalse(array.getJSONObject(0).getBoolean("isadmin")); Assert.assertTrue(28 == array.getJSONObject(0).getIntValue("age"));}
+</TestCases>
+
+Output (Failed test case 5):
+public static Object fastjsonRead(String json, String path) {
+        JSONObject jsonObject = JSON.parseObject(json);
+        
+        // Split the path by dots and brackets
+        String[] pathParts = path.substring(2).split("\\[|\\]|\\.");
+
+        // Traverse the JSON structure based on the path
+        Object current = jsonObject;
+        for (String part : pathParts) {
+            if (part.isEmpty()) continue;
+            
+            if (current instanceof JSONObject) {
+                current = ((JSONObject) current).get(part);
+            } else if (current instanceof JSONArray) {
+                JSONArray array = (JSONArray) current;
+                if (part.contains("=")) {
+                    String[] filterParts = part.split("=");
+                    String filterKey = filterParts[0].trim();
+                    String filterValue = filterParts[1].trim();
+                    JSONArray filteredArray = new JSONArray();
+                    for (int i = 0; i < array.size(); i++) {
+                        JSONObject obj = array.getJSONObject(i);
+                        if (obj.get(filterKey).toString().equals(filterValue)) {
+                            filteredArray.add(obj);
+                        }
+                    }
+                    current = filteredArray;
+                } else {
+                    int index = Integer.parseInt(part);
+                    current = array.get(index);
+                }
+            }
+        }
+        
+        return current;
+    }

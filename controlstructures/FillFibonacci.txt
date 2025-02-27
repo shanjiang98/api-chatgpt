@@ -1,0 +1,21 @@
+Input:
+<method>
+   void fillFibonacci(List<Double> list, int num)
+</method>
+<TestCases>
+    // #1.  (List(1.5, -0.6), 5) -> List(1.5, -0.6, 0.9, 0.3, 1.2, 1.5, 2.7)
+    // #2.  (List(1.5, -0.6), 1) -> List(1.5, -0.6, 0.9)
+    // #3.  (List(12.3, 1.0), 1) -> List(12.3, 1.0, 13.3)
+    // #4.  (List(1.0, 12.3), 1) -> List(1.0, 12.3, 13.3)
+    // #5.  (List(0.0, -0.6), 1) -> List(0.0, -0.6, -0.6)
+    // #6.  (List(1.5, 0.0), 1) -> List(1.5, 0.0, 1.5)
+</TestCases>
+
+Output:
+void fillFibonacci(List < Double > list, int num) {
+    int size = list.size();
+    for (int i = 0; i < num; i++) {
+        double nextValue = list.get(size - 2 + i) + list.get(size - 1 + i);
+        list.add(nextValue);
+    }
+}

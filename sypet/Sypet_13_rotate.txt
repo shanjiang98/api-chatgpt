@@ -1,0 +1,15 @@
+Input:
+<method>
+	Area rotate(Area area, Point2D point, double angle)
+</method>
+<TestCases>
+	// #1. (Area(new Rectangle2D.Double(0, 0, 10, 2)), Point2D.Double(0, 0), Math.PI / 2) -> Area(new Rectangle2D.Double(-2, 0, 2, 10))
+	// #2. (Area(new Rectangle2D.Double(10, 20, 10, 2)), new Point2D.Double(10, 20), Math.PI / 2) -> Area(new Rectangle2D.Double(8, 20, 2, 10))
+</TestCases>
+
+Output:
+Area rotate(Area area, Point2D point, double angle) {
+    AffineTransform transform = AffineTransform.getRotateInstance(angle, point.getX(), point.getY());
+    Area result = area.createTransformedArea(transform);
+    return result;
+}

@@ -1,0 +1,23 @@
+Input:
+<method>
+   List<Object> addArrayToListOrNull(Object[] arr, List<Object> list)
+</method>
+<TestCases>
+    // #1.  (["abc", null, 123, false, ""], [null, ""]) -> [null, "", "abc", null, 123, false, ""]
+    // #2.  (["abc", null, 123, false, ""], null) -> ["abc", null, 123, false, ""]
+    // #3.  (["abc"], [null, ""]) -> [null, "", "abc"]
+</TestCases>
+
+
+Output:
+public static List<Object> addArrayToListOrNull(Object[] arr, List<Object> list) {
+    // If the list is null, initialize it as a new ArrayList
+    if (list == null) {
+        list = new ArrayList<>();
+    }
+        
+    // Add all elements from the array to the list
+    Collections.addAll(list, arr);
+        
+    return list;
+}

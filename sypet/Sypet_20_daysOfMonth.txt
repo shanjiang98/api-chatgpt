@@ -1,0 +1,22 @@
+Input:
+<method>
+    int daysOfMonth(String dateStr, String formatStr)
+</method>
+<TestCases>
+    // #1. ("2012/02", "yyyy/MM") -> 29
+    // #2. ("2014/03", "yyyy/MM") -> 31
+</TestCases>
+
+Output:
+int daysOfMonth(String dateStr, String formatStr) {
+    SimpleDateFormat sdf = new SimpleDateFormat(formatStr);
+    try {
+        Date date = sdf.parse(dateStr);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+    } catch (ParseException e) {
+        e.printStackTrace();
+        return -1; // In case of error, return -1
+    }
+}

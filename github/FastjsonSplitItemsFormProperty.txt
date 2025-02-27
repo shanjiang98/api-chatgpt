@@ -1,0 +1,35 @@
+Input:
+<method>
+   String[] fastjsonSplitItemsFormProperty(final String property)
+</method>
+<TestCases>
+    // #1.  "abc,de,12345" -> String[] {"abc", "de", "12345"}
+    // #2.  "," -> String[] {}
+    // #3.  " " -> String[] {" "}
+    // #4.  "" -> null
+    // #5.  null -> null
+</TestCases>
+
+Output:
+public static String[] fastjsonSplitItemsFormProperty(final String property) {
+    // Check for null or empty string and return null in these cases
+    if (property == null || property.isEmpty()) {
+        return null;
+    }
+
+    // Split the string by comma
+    String[] parts = property.split(",");
+
+    // Create a list to hold non-empty parts
+    List < String > nonEmptyParts = new ArrayList < > ();
+
+    // Add non-empty parts to the list
+    for (String part: parts) {
+        if (!part.isEmpty()) {
+            nonEmptyParts.add(part);
+        }
+    }
+
+    // Convert the list back to an array and return
+    return nonEmptyParts.toArray(new String[0]);
+}

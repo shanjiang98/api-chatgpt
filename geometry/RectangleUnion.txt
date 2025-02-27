@@ -1,0 +1,37 @@
+Input:
+<method>
+     Rectangle2D.Double rectangleUnion(Rectangle2D[] rects)
+</method>
+<TestCases>
+    // #1.  Rectangle2D[] {new Rectangle2D.Double(3, 4, 4, 2), new Rectangle2D.Double(5, -4, 4, 5), new Rectangle2D.Double(8, 2, 2, 2), new Rectangle2D.Double(10, 5, 3, 3), new Rectangle2D.Double(7, 7, 0, 0)} -> Rectangle2D.Double(3, -4, 10, 12)
+    // #2.  Rectangle2D[] {new Rectangle2D.Double(3, 4, 4, 2), new Rectangle2D.Double(5, -4, 4, 5)} -> Rectangle2D.Double(3, -4, 6, 10)
+    // #3.  Rectangle2D[] {new Rectangle2D.Double(0.3, 0.4, 0.4, 0.2)} -> Rectangle2D.Double(0.3, 0.4, 0.4, 0.2)
+    // #4.  Rectangle2D[] {new Rectangle2D.Double()} -> Rectangle2D.Double()
+</TestCases>
+
+Output:
+public Rectangle2D.Double rectangleUnion(Rectangle2D[] rects) {
+    if (rects == null || rects.length == 0) {
+        return new Rectangle2D.Double();
+    }
+
+    double minX = Double.MAX_VALUE;
+    double minY = Double.MAX_VALUE;
+    double maxX = Double.MIN_VALUE;
+    double maxY = Double.MIN_VALUE;
+
+    for (Rectangle2D rect: rects) {
+        if (rect.getWidth() > 0 && rect.getHeight() > 0) {
+            minX = Math.min(minX, rect.getX());
+            minY = Math.min(minY, rect.getY());
+            maxX = Math.max(maxX, rect.getX() + rect.getWidth());
+            maxY = Math.max(maxY, rect.getY() + rect.getHeight());
+        }
+    }
+
+    if (minX == Double.MAX_VALUE || minY == Double.MAX_VALUE || maxX == Double.MIN_VALUE || maxY == Double.MIN_VALUE) {
+        return new Rectangle2D.Double();
+    }
+
+    return new Rectangle2D.Double(minX, minY, maxX - minX, maxY - minY);
+}

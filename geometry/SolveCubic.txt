@@ -1,0 +1,29 @@
+Input:
+<method>
+     int solveCubic(double[] coeff, List<Double> roots)
+</method>
+<TestCases>
+    // #1.  double[] { 47.25, -8.25, -5, 1 }, new ArrayList<Double>() -> 3, List<Double> list = UnorderedList(-3.0, 3.5, 4.5)
+    // #2.  double[] { 0.714, -1.79, 0.4, 1 }, new ArrayList<Double>() -> 3, List<Double> list = UnorderedList(-1.7, 0.6, 0.7)
+	// #3.  double[] { 0.748, -1.77, 0.4, 1 }, new ArrayList<Double>() -> 1, List(-1.7)
+	// #4.  double[] { 0.21, -0.65, 0.5, 0 }, new ArrayList<Double>() -> 2, List<Double> list = UnorderedList(0.6, 0.7)
+</TestCases>
+
+Output:
+public static int solveCubic(double[] coeff, List < Double > roots) {
+    // Ensure the coefficients array has exactly four elements
+    if (coeff == null || coeff.length != 4) {
+        throw new IllegalArgumentException("Coefficients array must have exactly four elements.");
+    }
+
+    // Prepare the coefficients for the cubic equation
+    int numRoots = CubicCurve2D.solveCubic(coeff);
+
+    // Add the roots to the list
+    for (int i = 0; i < numRoots; i++) {
+        roots.add(coeff[i]);
+    }
+
+    // Return the number of real roots found
+    return roots.size();
+}

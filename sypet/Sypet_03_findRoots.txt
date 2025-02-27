@@ -1,0 +1,19 @@
+Input:
+<method>
+	Complex[] findRoots(PolynomialFunction polynomial, double initialGuess)
+</method>
+<TestCases>
+	// #1. (PolynomialFunction(new double[] { 1, -2, 1 }), 0.0) -> comp != null && comp.length == 2 && comp[0].getReal() == 1.0 && comp[0].getImaginary() == 0.0
+</TestCases>
+
+Output:
+public Complex[] findRoots(PolynomialFunction polynomial, double initialGuess) {
+    // Use LaguerreSolver to find the roots of the polynomial
+    LaguerreSolver solver = new LaguerreSolver();
+    double[] coefficients = polynomial.getCoefficients();
+
+    // Find all roots
+    Complex[] roots = solver.solveAllComplex(coefficients, initialGuess);
+
+    return roots;
+}

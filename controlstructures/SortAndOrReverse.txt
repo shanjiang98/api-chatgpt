@@ -1,0 +1,20 @@
+Input:
+<method>
+    void sortAndOrReverse(List<String> list, boolean sort, boolean reverse)
+</method>
+<TestCases>
+    // #1.  List("b", "e", "a", "d", "c"), true, true -> List("e", "d", "c", "b", "a")
+    // #2.  List("b", "e", "a", "d", "c"), true, false -> List("a", "b", "c", "d", "e")
+    // #3.  List("b", "e", "a", "d", "c"), false, true -> List("c", "d", "a", "e", "b")
+    // #4.  List("b", "e", "a", "d", "c"), false, false -> List("b", "e", "a", "d", "c")
+</TestCases>
+
+Output:
+void sortAndOrReverse(List < String > list, boolean sort, boolean reverse) {
+    if (sort) {
+        Collections.sort(list);
+    }
+    if (reverse) {
+        Collections.reverse(list);
+    }
+}

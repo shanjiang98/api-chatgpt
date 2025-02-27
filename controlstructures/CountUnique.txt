@@ -1,0 +1,28 @@
+Input:
+<method>
+   int countUnique(String[] arr)
+</method>
+<TestCases>
+    // #1.  (String[] {"a", "d", "a", "!@#", "c", "a", "?!", "A", " ", "b", "c", "123"}) -> 9
+    // #2.  (String[] {"a", "d", "a", "!@#", "c", "a", "?!", "a", " ", "b", "c", "123"}) -> 8
+    // #3.  (String[] {"a", "d", "a", "!@#", "c", "a", "?!", "a", " ", "c", "c", "123"}) -> 7
+    // #4.  (String[] {"", null, " ", "null", "NULL", "  "}) -> 6
+    // #5.  (String[] {"", null, " ", "null", "null", "  "}) -> 5
+    // #6.  (String[] {"", null, " ", "null", null, " "}) -> 4
+    // #7.  (String[] {}) -> 0
+</TestCases>
+
+Output:
+public int countUnique(String[] arr) {
+    // Using a HashSet to store unique elements
+    Set < String > uniqueElements = new HashSet < > ();
+
+    // Loop through each element in the array
+    for (String s: arr) {
+        // Add the element to the set
+        uniqueElements.add(s);
+    }
+
+    // The size of the set represents the count of unique elements
+    return uniqueElements.size();
+}

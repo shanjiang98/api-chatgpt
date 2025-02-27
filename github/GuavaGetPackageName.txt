@@ -1,0 +1,24 @@
+Input:
+<method>
+   String guavaGetPackageName(String classFullName)
+</method>
+<TestCases>
+    // #1.  "java.MyType" -> "java"
+    // #2.  Iterable.class.getName() -> "java.lang"
+    // #3.  "NoPackage" -> ""
+    // #4.  "ab.cd" -> "ab"
+</TestCases>
+
+Output:
+public static String guavaGetPackageName(String classFullName) {
+    // Find the last occurrence of the dot character, which separates package name and class name
+    int lastDotIndex = classFullName.lastIndexOf('.');
+
+    // If there's no dot, it means there is no package
+    if (lastDotIndex == -1) {
+        return "";
+    }
+
+    // Return the substring from the start to the last dot index as the package name
+    return classFullName.substring(0, lastDotIndex);
+}

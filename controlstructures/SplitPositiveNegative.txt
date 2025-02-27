@@ -1,0 +1,22 @@
+Input:
+<method>
+    void splitPositiveNegative(List<Double> list, Set<Double> positive, Set<Double> negative)
+</method>
+<TestCases>
+    // #1.  List(0.1, -3.3, -0.1, 0.0, 3.3, -0.2, 0.0, 0.2), Set(6.7, 8.9), Set(-6.7, -8.9) -> Set(0.1, 0.2, 3.3, 6.7, 8.9), Set(-0.1, -0.2, -3.3, -6.7, -8.9)
+    // #2.  List(-0.1, 0.1), Set(6.7, 8.9), Set(-6.7, -8.9) -> Set(0.1, 6.7, 8.9), Set(-0.1, -6.7, -8.9)
+    // #3.  List(0.1, -0.1), Set(6.7, 8.9), Set(-6.7, -8.9) -> Set(0.1, 6.7, 8.9), Set(-0.1, -6.7, -8.9)
+    // #4.  List(0.1), Set(6.7, 8.9), Set(-6.7, -8.9) -> Set(0.1, 6.7, 8.9), Set(-6.7, -8.9)
+	// #5.  List(-0.1), Set(6.7, 8.9), Set(-6.7, -8.9) -> Set(6.7, 8.9), Set(-0.1, -6.7, -8.9)
+</TestCases>
+
+Output:
+void splitPositiveNegative(List < Double > list, Set < Double > positive, Set < Double > negative) {
+    for (Double number: list) {
+        if (number > 0) {
+            positive.add(number); // Add positive numbers to the positive set
+        } else if (number < 0) {
+            negative.add(number); // Add negative numbers to the negative set
+        }
+    }
+}

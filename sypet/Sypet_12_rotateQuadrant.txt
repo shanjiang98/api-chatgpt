@@ -1,0 +1,30 @@
+Input:
+<method>
+	Rectangle2D rotateQuadrant(Rectangle2D rect, int num)
+</method>
+<TestCases>
+	// #1. (Rectangle2D.Double(10, 20, 10, 2), 1) -> Rectangle2D.Double(-22, 10, 2, 10)
+</TestCases>
+
+Output:
+Rectangle2D rotateQuadrant(Rectangle2D rect, int num) {
+    // Normalize the number of 90-degree rotations
+    int rotations = num % 4;
+
+    double x = rect.getX();
+    double y = rect.getY();
+    double width = rect.getWidth();
+    double height = rect.getHeight();
+
+    // Rotate by 90 degrees clockwise per quadrant
+    switch (rotations) {
+        case 1:
+            return new Rectangle2D.Double(-y - height, x, height, width);
+        case 2:
+            return new Rectangle2D.Double(-x - width, -y - height, width, height);
+        case 3:
+            return new Rectangle2D.Double(y, -x - width, height, width);
+        default:
+            return rect; // No rotation if quadrant is not 1, 2, or 3
+    }
+}

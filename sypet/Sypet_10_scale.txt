@@ -1,0 +1,21 @@
+Input:
+<method>
+	Rectangle2D scale(Rectangle2D rect, double scaleX, double scaleY)
+</method>
+<TestCases>
+	// #1. (Rectangle2D.Double(10, 20, 10, 2), 2.0, 3.0) -> Rectangle2D.Double(20, 60, 20, 6)
+</TestCases>
+
+Output:
+public Rectangle2D scale(Rectangle2D rect, double scaleX, double scaleY) {
+    // Scale the width and height
+    double newWidth = rect.getWidth() * scaleX;
+    double newHeight = rect.getHeight() * scaleY;
+
+    // Scale the x and y position
+    double newX = rect.getX() * scaleX;
+    double newY = rect.getY() * scaleY;
+
+    // Return the new scaled rectangle
+    return new Rectangle2D.Double(newX, newY, newWidth, newHeight);
+}

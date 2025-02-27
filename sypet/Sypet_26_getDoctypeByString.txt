@@ -1,0 +1,18 @@
+Input:
+<method>
+    DocumentType getDoctypeByString(String xmlStr) throws Throwable
+</method>
+<TestCases>
+    // #1.  "<?xml version=\"1.0\"?><!DOCTYPE note [<!ELEMENT note (to,from,heading,body)><!ELEMENT body (#PCDATA)>]><note><heading>Reminder</heading><body>Don't forget me this weekend</body></note>" -> DocumentType elem != null && elem.getName().equals("note")
+</TestCases>
+
+Output:
+public DocumentType getDoctypeByString(String xmlStr) throws Throwable {
+    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+    factory.setValidating(false);
+    factory.setNamespaceAware(true);
+
+    DocumentBuilder builder = factory.newDocumentBuilder();
+    Document doc = builder.parse(new ByteArrayInputStream(xmlStr.getBytes()));
+    return doc.getDoctype();
+}

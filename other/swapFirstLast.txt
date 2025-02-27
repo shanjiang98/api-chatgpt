@@ -1,0 +1,23 @@
+Input:
+<method>
+	List<String> swapFirstLast(List<String> arg0)
+</method>
+<TestCases>
+	// #1. [] -> []
+    // #2. ["hello", "world"] -> ["world", "hello"]
+    // #3. ["hello"] -> ["hello"]
+    // #4. ["welcome", "to", "java", "programming", "language"] -> ["language", "to", "java", "programming", "welcome"]
+</TestCases>
+
+Output:
+List < String > swapFirstLast(List < String > arg0) {
+    if (arg0.size() <= 1) {
+        return arg0;
+    }
+    List < String > swappedList = new ArrayList < > (arg0);
+    String firstElement = swappedList.get(0);
+    String lastElement = swappedList.get(swappedList.size() - 1);
+    swappedList.set(0, lastElement);
+    swappedList.set(swappedList.size() - 1, firstElement);
+    return swappedList;
+}

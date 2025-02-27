@@ -1,0 +1,25 @@
+Input:
+<method>
+   Object[] guavaFillArray(Iterable<?> elements, Object[] array)
+</method>
+<TestCases>
+    // #1.  ArrayList("abc", true, null, 123, 12.3), Object[7] -> Object[] { "abc", true, null, 123, 12.3, null, null }
+    // #2.  ArrayList("abc", true), Object[2] -> Object[] { "abc", true }
+    // #3.  ArrayList("abc"), Object[2] -> Object[] { "abc", null }
+</TestCases>
+
+Output:
+public static Object[] guavaFillArray(Iterable << ? > elements, Object[] array) {
+    Iterator << ? > iterator = elements.iterator();
+    int index = 0;
+
+    while (iterator.hasNext() && index < array.length) {
+        array[index++] = iterator.next();
+    }
+
+    while (index < array.length) {
+        array[index++] = null;
+    }
+
+    return array;
+}

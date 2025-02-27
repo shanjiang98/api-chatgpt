@@ -1,0 +1,21 @@
+Input:
+<method>
+   Set<String> findIdentityIgnoringCase(Map<String, String> map)
+</method>
+<TestCases>
+    // #1.  (HashMap<>({"a", "un"},{"Animal", "animal"},{"Bicycle", "bicicleta"},{"color", "color"},{"extra", "EXTRA"},{"Family", "familia"},{"Idea", "idea"},{"Minute", "minuto"},{"One", "uno"},{"TERRIBLE", "terrible"},{"To", "a"})) -> Set("Animal", "color", "extra", "Idea", "TERRIBLE")
+    // #2.  (HashMap<>({"A", "a"}, {"B", "B"})) -> Set(new String("A"), new String("B"))
+    // #3.  (HashMap<>({"B", "A"}, {"A", "B"})) -> Set()
+    // #4.  (HashMap<>({"A", "a"}, {"B", "B"}, {"a", "A"}, {"b", "c"})) -> Set("A", "B", "a")
+</TestCases>
+
+Output:
+public Set < String > findIdentityIgnoringCase(Map < String, String > map) {
+    Set < String > result = new HashSet < > ();
+    for (Map.Entry < String, String > entry: map.entrySet()) {
+        if (entry.getKey().equalsIgnoreCase(entry.getValue())) {
+            result.add(entry.getKey());
+        }
+    }
+    return result;
+}

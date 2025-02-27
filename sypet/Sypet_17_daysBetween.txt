@@ -1,0 +1,25 @@
+Input:
+<method>
+	int daysBetween(DateTime date1, DateTime date2)
+</method>
+<TestCases>
+	// #1. DateTimeZone PORTUGAL = DateTimeZone.forID("Europe/Lisbon");
+           DateTime start = new DateTime(2013, 9, 16, 5, 0, 0, PORTUGAL);
+           DateTime end = new DateTime(2013, 10, 21, 13, 0, 0, PORTUGAL);
+           return new Object[] { start, end }; -> 35
+	// #2. DateTimeZone BRAZIL = DateTimeZone.forID("America/Sao_Paulo");
+           DateTimeZone PORTUGAL = DateTimeZone.forID("Europe/Lisbon");
+           DateTime start = new DateTime(2013, 10, 13, 23, 59, BRAZIL);
+           DateTime end = new DateTime(2013, 10, 20, 3, 0, PORTUGAL);
+           return new Object[] { start, end }; -> 7
+    // #3. DateTimeZone SH = DateTimeZone.forID("Asia/Shanghai");
+           DateTimeZone CT = DateTimeZone.forID("America/Chicago");
+           DateTime start = new DateTime(2013, 11, 13, 10, 59, SH);
+           DateTime end = new DateTime(2013, 11, 20, 5, 0, CT);
+           return new Object[] { start, end }; -> 7
+</TestCases>
+
+Output:
+int daysBetween(DateTime date1, DateTime date2) {
+    return Days.daysBetween(date1.toLocalDate(), date2.toLocalDate()).getDays();
+}

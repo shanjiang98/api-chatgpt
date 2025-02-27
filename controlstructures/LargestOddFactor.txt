@@ -1,0 +1,23 @@
+Input:
+<method>
+    int largestOddFactor(int num)
+</method>
+<TestCases>
+    // #1.  (103 * 1024) -> 103
+    // #2.  (-221 * 2) -> -221
+    // #3.  (229) -> 229
+</TestCases>
+
+Output:
+public int largestOddFactor(int num) {
+    if (num == 0) {
+        return 0;
+    }
+
+    num = Math.abs(num);
+    while (num % 2 == 0) {
+        num /= 2;
+    }
+
+    return num;
+}

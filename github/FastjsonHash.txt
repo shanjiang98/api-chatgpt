@@ -1,0 +1,22 @@
+Input:
+<method>
+   int fastjsonHash(char[] buffer, int offset, int len)
+</method>
+<TestCases>
+    // #1.  (['H', 'e', 'l', 'l', 'o', ',', ' ', 'W', 'o', 'r', 'l', 'd', '!'], 7, 4) -> 31*31*31*'W' + 31*31*'o' + 31*'r' + 'l'
+    // #2.  (['H', 'e', 'l', 'l', 'o', ',', ' ', 'W', 'o', 'r', 'l', 'd', '!'], 11, 2) -> 31*'d' + '!'
+    // #3.  (['H', 'e', 'l', 'l', 'o', ',', ' ', 'W', 'o', 'r', 'l', 'd', '!'], 9, 1) -> (int) 'r'
+    // #4.  ([31, 0, 0, 0, 0, 0, 0], 0, 7) -> 31*31*31*31*31*31*31
+    // #5.  ([1], 0, 1) -> 1
+    // #6.  (['X', 'Y', 'Z'], 0, 3) -> 31*31*'X' + 31*'Y' + 'Z'
+    // #7.  (['X', 'Y'], 0, 2) -> 31*'X' + 'Y'
+</TestCases>
+
+Output:
+public static int fastjsonHash(char[] buffer, int offset, int len) {
+    int hash = 0;
+    for (int i = 0; i < len; i++) {
+        hash = 31 * hash + buffer[offset + i];
+    }
+    return hash;
+}

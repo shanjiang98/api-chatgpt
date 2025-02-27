@@ -1,0 +1,24 @@
+Input:
+<method>
+   HashSet<String> arrayIntersection(String[] arr1, String[] arr2)
+</method>
+<TestCases>
+    // #1.  (String[] {"abc", "", "hi", "1", "x"}, String[] {"x!", "hi", "hi", "abc", "1", "def"}) -> Set("abc", "hi", "1")
+    // #2.  (String[] {"abc", "x", "hi"}, String[] {new String("hi"), new String("x")}) -> Set("hi", "x")
+    // #3.  (String[] {new String("hi"), new String("x")}, String[] {"abc", "x", "hi"}) -> Set("hi", "x")
+    // #4.  (String[] {" hi", "x", "hi!"}, String[] {"hi", new String("x")}) -> Set("x")
+    // #5.  (String[] {"abc", "x", "hi"}, String[] {"oh hi", "X", "xy"}) -> Set()
+</TestCases>
+
+Output:
+public HashSet < String > arrayIntersection(String[] arr1, String[] arr2) {
+    HashSet < String > set1 = new HashSet < > (Arrays.asList(arr1)); // Convert arr1 to a HashSet
+    HashSet < String > resultSet = new HashSet < > (); // Create a HashSet to store the intersection
+
+    for (String s: arr2) { // Iterate through arr2
+        if (set1.contains(s)) { // Check if arr1 contains the element from arr2
+            resultSet.add(s); // Add the element to the resultSet
+        }
+    }
+    return resultSet;
+}

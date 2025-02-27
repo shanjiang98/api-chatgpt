@@ -1,0 +1,22 @@
+Input:
+<method>
+   boolean isAllPositive(double[] arr)
+</method>
+<TestCases>
+    // #1.  (double[] {0.1, 0.2, 12.3, 0.0001, 123.4, 1.2, 2.3}) -> true
+    // #2.  (double[] {0.1, 0.2, 12.3, -0.0001, 123.4, 1.2, 2.3}) -> false
+    // #3.  (double[] {0.01}) -> true
+    // #4.  (double[] {0.0}) -> false
+    // #5.  (double[] {-0.01}) -> false
+    // #6.  (double[] {}) -> true
+</TestCases>
+
+Output:
+boolean isAllPositive(double[] arr) {
+    for (double num: arr) {
+        if (num <= 0) {
+            return false;
+        }
+    }
+    return true;
+}

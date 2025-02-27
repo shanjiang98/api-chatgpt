@@ -1,0 +1,31 @@
+Input:
+<method>
+   int zxingGetMax(int[] values)
+</method>
+<TestCases>
+    // #1.  int[] {12, 34, 32, 99, 98, 23} -> 99
+    // #2.  int[] {12, 34, 32, 97, 98, 23} -> 98
+    // #3.  int[] {123} -> 123
+    // #4.  int[0] -> -1
+</TestCases>
+
+Output:
+// Method to find the maximum value in an integer array
+public int zxingGetMax(int[] values) {
+    // Handle edge case where the array is empty
+    if (values == null || values.length == 0) {
+        return -1;
+    }
+
+    // Initialize max with the first element of the array
+    int max = values[0];
+
+    // Iterate through the array to find the maximum value
+    for (int i = 1; i < values.length; i++) {
+        if (values[i] > max) {
+            max = values[i];
+        }
+    }
+
+    return max;
+}

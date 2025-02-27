@@ -1,0 +1,25 @@
+Input:
+<method>
+    int popQueueEmptyStrings(Queue<String> queue)
+</method>
+<TestCases>
+    // #1.  Queue("", "", "", "", "not", "", "empty", "") -> Queue("not", "", "empty", ""), 4
+    // #2.  Queue("", "", "", " ", "", " ") -> Queue(" ", "", " "), 3
+    // #3.  Queue("", "", ".", "", ".", "") -> Queue(".", "", ".", ""), 2
+    // #4.  Queue("", "", "", "", "") -> Queue(), 5
+    // #5.  Queue("") -> Queue(), 1
+    // #6.  Queue(" ", "", "?", "") -> Queue(" ", "", "?", ""), 0
+    // #7.  Queue() -> Queue(), 0
+</TestCases>
+
+Output:
+public int popQueueEmptyStrings(Queue < String > queue) {
+    int emptyCount = 0;
+
+    while (!queue.isEmpty() && queue.peek().equals("")) {
+        queue.poll();
+        emptyCount++;
+    }
+
+    return emptyCount;
+}

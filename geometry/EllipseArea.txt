@@ -1,0 +1,17 @@
+Input:
+<method>
+     double ellipseArea(Ellipse2D ellipse)
+</method>
+<TestCases>
+    // #1.  Ellipse2D.Double(12.3, -45.6, 7.8, 9) -> 3.9 * 4.5 * Math.PI
+    // #2.  Ellipse2D.Double(12.3, -45.6, 7.8, 2) -> 3.9 * Math.PI
+    // #3.  Ellipse2D.Double(12.3, -45.6, 2, 7.8) -> 3.9 * Math.PI
+    // #4.  Ellipse2D.Double(12.3, -45.6, 2, 2) -> Math.PI
+</TestCases>
+
+Output:
+double ellipseArea(Ellipse2D ellipse) {
+    double semiMajorAxis = ellipse.getWidth() / 2;
+    double semiMinorAxis = ellipse.getHeight() / 2;
+    return semiMajorAxis * semiMinorAxis * Math.PI;
+}

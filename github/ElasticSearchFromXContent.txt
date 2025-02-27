@@ -1,0 +1,111 @@
+Input:
+<method>
+   IndexResponse fromXContent(XContentParser parser) throws IOException
+</method>
+<TestCases>
+    <checker>
+    boolean checker(XContentParser p) {
+        try {
+            if (p.nextToken() == null)
+                return true;
+        } catch (IOException e) {}
+        return false;
+    }
+    </checker>
+    <helper>
+    static XContentParser createJsonParser(String data) {
+        try {
+            XContentParser parser = XContentType.JSON.xContent().createParser(NamedXContentRegistry.EMPTY, data);
+            parser.nextToken(); // accounts for the ensureExpectedToken line
+            return parser;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    </helper>
+    // #1.  parser = createJsonParser("{\"junk\":[1, 2, 3],\"_version\":123,\"_seq_no\":45,\"\":\"\",\"_primary_term\":67}") -> IndexResponse(null, null, null, 45, 67, 123, true), checker(parser) == true
+    // #2.  parser = createJsonParser("{\"_version\":123}") -> IndexResponse(null, null, null, -2, 0, 123, true), checker(parser) == true
+</TestCases>
+
+Output:
+class IndexResponse {
+    private final String index;
+    private final String id;
+    private final String type;
+    private final long seqNo;
+    private final long primaryTerm;
+    private final long version;
+    private final boolean created;
+
+    public IndexResponse(String index, String type, String id, long seqNo, long primaryTerm, long version, boolean created) {
+        this.index = index;
+        this.id = id;
+        this.type = type;
+        this.seqNo = seqNo;
+        this.primaryTerm = primaryTerm;
+        this.version = version;
+        this.created = created;
+    }
+
+    @Override
+    public String toString() {
+        return "IndexResponse{" +
+                "index='" + index + '\'' +
+                ", id='" + id + '\'' +
+                ", type='" + type + '\'' +
+                ", seqNo=" + seqNo +
+                ", primaryTerm=" + primaryTerm +
+                ", version=" + version +
+                ", created=" + created +
+                '}';
+    }
+}
+
+class XContentParser {
+    private final Map<String, Object> data;
+    private java.util.Iterator<Map.Entry<String, Object>> iterator;
+    private Map.Entry<String, Object> current;
+
+    public XContentParser(Map<String, Object> data) {
+        this.data = data;
+        this.iterator = data.entrySet().iterator();
+    }
+
+    public boolean nextToken() {
+        if (iterator.hasNext()) {
+            current = iterator.next();
+            return true;
+        }
+        return false;
+    }
+
+    public String currentName() {
+        return current != null ? current.getKey() : null;
+    }
+
+    public Long longValue() {
+        return current != null && current.getValue() instanceof Number ? ((Number) current.getValue()).longValue() : null;
+    }
+}
+
+public static IndexResponse fromXContent(XContentParser parser) throws IOException {
+    long seqNo = -2;
+    long primaryTerm = 0;
+    long version = -1;
+    boolean created = false;
+
+    while (parser.nextToken()) {
+        String currentName = parser.currentName();
+        if ("_seq_no".equals(currentName)) {
+            seqNo = parser.longValue();
+        } else if ("_primary_term".equals(currentName)) {
+            primaryTerm = parser.longValue();
+        } else if ("_version".equals(currentName)) {
+            version = parser.longValue();
+            created = true;
+        }
+    }
+
+    return new IndexResponse(null, null, null, seqNo, primaryTerm, version, created);
+}

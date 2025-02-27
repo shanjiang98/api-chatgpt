@@ -1,0 +1,24 @@
+Input:
+<method>
+   HashSet<Integer> findFactors(int num)
+</method>
+<TestCases>
+    // #1.  (18), "start") -> Set(1, 2, 3, 6, 9, 18)
+    // #2.  (17) -> Set(1, 17)
+    // #3.  (9) -> Set(1, 3, 9)
+    // #4.  (6") -> Set(1, 2, 3, 6)
+    // #5.  (4) -> Set(1, 2, 4)
+    // #6.  (3) -> Set(1, 3)
+    // #7.  (1) -> Set(1)
+</TestCases>
+
+Output:
+HashSet < Integer > findFactors(int num) {
+    HashSet < Integer > factors = new HashSet < > ();
+    for (int i = 1; i <= num; i++) {
+        if (num % i == 0) {
+            factors.add(i);
+        }
+    }
+    return factors;
+}

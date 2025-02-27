@@ -1,0 +1,27 @@
+Input:
+<method>
+    String longestString(List<String> list)
+</method>
+<TestCases>
+    // #1.  (List("long", "short", "", "longest", "longer")) -> "longest"
+    // #2.  (List("long", "longest", "", "short", "longer")) -> "longest"
+    // #3.  (List("123456", "abcde", "wxyz!")) -> "123456"
+    // #4.  (List("12345", "abcdef", "wxyz!")) -> "abcdef"
+    // #5.  (List("12345", "abcde", "wxyz!?")) -> "wxyz!?"
+    // #6.  (List("ABC", "12345")) -> "12345"
+    // #7.  (List("ABCDE", "123")) -> "ABCDE"
+</TestCases>
+
+Output:
+public String longestString(List < String > list) {
+    if (list == null || list.isEmpty()) {
+        return "";
+    }
+    String longest = "";
+    for (String s: list) {
+        if (s.length() > longest.length()) {
+            longest = s;
+        }
+    }
+    return longest;
+}

@@ -1,0 +1,22 @@
+Input:
+<method>
+    double sumPositive(double[] arr)
+</method>
+<TestCases>
+    // #1.  double[] {1.2, -3.4, 10.0, -0.1, 0.1, 300.0} -> 311.3
+    // #2.  double[] {1.2, 3.4} -> 4.6
+    // #3.  double[] {1.2, -3.4} -> 1.2
+    // #4.  double[] {-1.2, 3.4} -> 3.4
+	// #5.  double[] {-1.2, -3.4} -> 0.0
+</TestCases>
+
+Output:
+double sumPositive(double[] arr) {
+    double sum = 0.0;
+    for (double num: arr) {
+        if (num > 0) {
+            sum += num;
+        }
+    }
+    return sum;
+}

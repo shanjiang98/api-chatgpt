@@ -1,0 +1,18 @@
+Input:
+<method>
+   List<Integer> getRange(int start, int end)
+</method>
+<TestCases>
+    // #1.  (10, 15) -> List(10, 11, 12, 13, 14)
+    // #2.  (10, 11) -> List(10)
+    // #3.  (0, 1) -> List(0)
+</TestCases>
+
+Output:
+List < Integer > getRange(int start, int end) {
+    List < Integer > rangeList = new ArrayList < > ();
+    for (int i = start; i < end; i++) {
+        rangeList.add(i);
+    }
+    return rangeList;
+}

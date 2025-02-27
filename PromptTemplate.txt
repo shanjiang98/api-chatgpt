@@ -1,0 +1,82 @@
+<Role>
+    You are a software engineer. You will be given with an Java method signature, its return type, and a set of test cases as comments. Your task is to implement the Java method into a full implementation to pass the test cases.
+</Role>
+<Instruction>
+    Use the following step by step instruction to solve the problem:
+        Step 1 - Import Necessary Libraries
+            (1) Identify and include any required import statements, such as Java standard libraries (java.util.*), or open-source libraries (e.g., Apache Commons, Guava) to simplify implementation.
+            (2) Ensure that all dependencies are properly referenced to facilitate a smooth compilation.
+        Step 2 - Define Any Required Helper Classes or Methods
+            (1) If the method requires additional data structures or utility functions, define them before implementing the main method.
+            (2) Ensure helper classes or methods are designed efficiently to support modularity and reusability.
+        Step 3 - Create a Public Class with an Appropriate Name
+            (1) Define a class that logically represents the method's functionality (e.g., APIUtility, StringProcessor, MathHelper).
+            (2) Ensure the class is structured according to Java best practices.
+        Step 4 - Understand the Problem Statement and Requirements
+            (1) Analyze the method signature, return type, and test cases to infer the expected behavior.
+            (2) Identify edge cases that may not be explicitly covered by the test cases but are crucial for correctness (e.g., null inputs, empty lists, boundary values).
+        Step 5 - Implement the Method to Pass All Test Cases
+            (1) Write a clear and efficient implementation of the method to meet the expected input-output requirements.
+            (2) Optimize for performance and maintainability while ensuring correctness.
+        Step 6 - Validate Edge Cases and Complete Implementation
+            (1) Consider additional edge cases beyond the provided test cases (e.g., large inputs, invalid values).
+            (2) Refactor the code if necessary to handle all identified cases.
+        Step 7 - Write Unit Tests for Each Provided Test Case
+            (1) Create a test method for each given test case using JUnit (or another testing framework).
+            (2) Ensure test methods cover normal, edge, and erroneous inputs.
+        Step 8 - Provide a Main Method for Execution and Validation
+            (1) Implement a main method to run and validate the test cases.
+            (2) Check if the actual output matches with the expected output to confirm correctness and ensure all test cases pass.
+            (3) Verify that the code compiles and runs without errors.
+</Instruction>
+<examples> 
+    Here are a few examples:
+    <method>
+        List<Integer> GetRange(int start, int end)
+    </method>
+    <TestCases>
+        // #1. (10, 9) -> []
+        // #2. (10, 10) -> []
+        // #3. (10, 11) -> [10]
+        // #4. (10, 12) -> [10, 11]
+        // #5. (-2, 2) -> [-1, -1, 0, 1]
+    </TestCases>
+    <output>
+        List<Integer> GetRange(int start, int end) {
+            ArrayList<Integer> range = new ArrayList<Integer>();
+            for (int i=0; i+start < end; i++)
+                range.add(Integer.valueOf(i+start));
+            return range;
+        }
+    </output>
+    <method>
+        void updateStringAtIndex(String[] strings, int index, String newValue)
+    </method>
+    <TestCases>
+        // #1. strings = {"apple", "banana", "cherry"}, index = 1, newValue = "blueberry" -> {"apple", "blueberry", "cherry"}
+        // #2. strings = {"apple", "blueberry", "cherry"}, index = 0, newValue = "apricot" -> {"apricot", "blueberry", "cherry"}
+        // #3. strings = {"apple", "banana", "cherry"}, index = 2, newValue = "date" -> {"apple", "banana", "date"}
+        // #4. strings = {"apple", "banana", "cherry"}, index = -1, newValue = "peach" -> {"apple", "banana", "cherry"}
+        // #5. strings = {"apple", "banana", "cherry"}, index = 3, newValue = "blueberry" -> {"apple", "banana", "cherry"}
+    </TestCases>
+    <output>
+        void updateStringAtIndex(String[] strings, int index, String newValue) {
+            if (strings == null || index < 0 || index >= strings.length || newValue == null) {
+                return; // Exit if invalid input
+            }
+            strings[index] = newValue;
+        }
+        ...
+    </output>
+</examples>
+Now, give you the following context:
+<method>
+    {METHOD_SIGNATURE}
+</method>
+<TestCases>
+    {TEST_CASES}
+</TestCases>
+<optional>
+    {OPTIONAL_USING_PACKAGE_INSTRUCTIONS}
+</optional>
+Please output the results. Only output complete code.

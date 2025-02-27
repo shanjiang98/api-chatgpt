@@ -1,0 +1,21 @@
+Input:
+<method>
+    void centerAtOrigin(RectangularShape shape)
+</method>
+<TestCases>
+    // #1.  Ellipse2D.Double(12, 34, 5.6, 7.8) -> Ellipse2D.Double(-2.8, -3.9, 5.6, 7.8)
+    // #2.  Rectangle2D.Double(12, 34, 0.0, 7.8) -> Rectangle2D.Double(0.0, -3.9, 0.0, 7.8)
+    // #3.  Ellipse2D.Double(12, 34, 5.6, 0.0) -> Ellipse2D.Double(-2.8, -0.0, 5.6, 0.0)
+    // #4.  Ellipse2D.Double(12, 34, 2.0, 0.0) -> Ellipse2D.Double(-1.0, -0.0, 2.0, 0.0)
+</TestCases>
+
+Output:
+void centerAtOrigin(RectangularShape shape) {
+    double centerX = shape.getCenterX();
+    double centerY = shape.getCenterY();
+    double width = shape.getWidth();
+    double height = shape.getHeight();
+
+    // Adjust the shape's position to center it at the origin
+    shape.setFrame(-width / 2, -height / 2, width, height);
+}

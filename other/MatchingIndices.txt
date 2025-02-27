@@ -1,0 +1,24 @@
+Input:
+<method>
+    ArrayList<Integer> matchingIndices(String[] strings, String pattern)
+</method>
+<TestCases>
+    // #1.  (String[] {"aab", "aaab", "aaba", "abb", "abaab", "abab", "", "bab"}, "(a+b)*") -> List(0, 1, 4, 5, 6)
+    // #2.  (String[] {"aab", "abab"}, "(a+b)*") -> List(0, 1)
+    // #3.  (String[] {"bab", "abab"}, "(a+b)*") -> List(1)
+    // #4.  (String[] {"abababaabab"}, "(a+b)*") -> List(0)
+    // #5.  (String[] {"abababbaaab"}, "(a+b)*") -> List()
+</TestCases>
+
+Output:
+ArrayList < Integer > matchingIndices(String[] strings, String pattern) {
+    ArrayList < Integer > matchingIndices = new ArrayList < > ();
+    Pattern compiledPattern = Pattern.compile(pattern);
+
+    for (int i = 0; i < strings.length; i++) {
+        if (compiledPattern.matcher(strings[i]).matches()) {
+            matchingIndices.add(i);
+        }
+    }
+    return matchingIndices;
+}

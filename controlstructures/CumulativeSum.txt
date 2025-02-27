@@ -1,0 +1,17 @@
+Input:
+<method>
+   void cumulativeSum(double[] arr)
+</method>
+<TestCases>
+    // #1.  (double[] {1.2, 3.4, -1.0, 100.0}) -> double[] {1.2, 4.6, 3.6, 103.6}
+    // #2.  (double[] {1.2, 3.4}) -> double[] {1.2, 4.6}
+    // #3.  (double[] {1.2, -1.2}) -> double[] {1.2, 0.0}
+    // #4.  (double[] {1.2, 1.2}) -> double[] {1.2, 2.4}
+</TestCases>
+
+Output:
+void cumulativeSum(double[] arr) {
+    for (int i = 1; i < arr.length; i++) {
+        arr[i] += arr[i - 1];
+    }
+}

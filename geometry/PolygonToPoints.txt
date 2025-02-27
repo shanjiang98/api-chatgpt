@@ -1,0 +1,25 @@
+Input:
+<method>
+     ArrayList<Point> polygonToPoints(Polygon poly)
+</method>
+<TestCases>
+    // #1.  Polygon() -> ArrayList<Point>()
+    // #2.  Polygon(new int[] {0}, new int[] {0}, 1) -> ArrayList<Point>({new Point()})
+    // #3.  Polygon(new int[] {1}, new int[] {0}, 1) -> ArrayList<Point>({new Point(1, 0)})
+    // #4.  Polygon(new int[] {12}, new int[] {0}, 1) -> ArrayList<Point>({new Point(12, 0)})
+    // #5.  Polygon(new int[] {0}, new int[] {34}, 1) -> ArrayList<Point>({new Point(0, 34)})
+    // #6.  Polygon(new int[] {12}, new int[] {34}, 1) -> ArrayList<Point>({new Point(12, 34)})
+    // #7.  Polygon(new int[] {12, -1}, new int[] {34, -11}, 2) -> ArrayList<Point>({new Point(12, 34), new Point(-1, -11)})
+    // #8.  Polygon(new int[] {12, 0, -1, 99}, new int[] {34, 0, -11, 88}, 4) -> ArrayList<Point>({new Point(12, 34),  new Point(), new Point(-1, -11), new Point(99, 88)})
+</TestCases>
+
+Output:
+public static ArrayList < Point > polygonToPoints(Polygon poly) {
+    ArrayList < Point > points = new ArrayList < > ();
+
+    for (int i = 0; i < poly.npoints; i++) {
+        points.add(new Point(poly.xpoints[i], poly.ypoints[i]));
+    }
+
+    return points;
+}

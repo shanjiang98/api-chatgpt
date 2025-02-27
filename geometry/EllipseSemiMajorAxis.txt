@@ -1,0 +1,13 @@
+Input:
+<method>
+     double ellipseSemiMajorAxis(Ellipse2D ellipse)
+</method>
+<TestCases>
+    // #1.  Ellipse2D.Double(1.2, 3.4, 10.24, 10.23) -> 5.12
+    // #2.  Ellipse2D.Double(1.2, 3.4, 10.22, 10.23) -> 5.115
+</TestCases>
+
+Output:
+double ellipseSemiMajorAxis(Ellipse2D ellipse) {
+    return Math.max(ellipse.getWidth(), ellipse.getHeight()) / 2.0;
+}

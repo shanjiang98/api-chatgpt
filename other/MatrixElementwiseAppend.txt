@@ -1,0 +1,18 @@
+Input:
+<method>
+    void matrixElementwiseAppend(String[][] mat, String suffix)
+</method>
+<TestCases>
+    // #1.  (String[][] {{"123", "", "?"}, {}, {"cb", "1"}}, "ab") -> String[][] {{"123ab", "ab", "?ab"}, {}, {"cbab", "1ab"}}
+    // #2.  (String[][] {{"123"}}, "!!") -> String[][] {{"123!!"}}
+    // #3.  (String[][] {{""}}, "abc") -> String[][] {{"abc"}}
+</TestCases>
+
+Output:
+void matrixElementwiseAppend(String[][] mat, String suffix) {
+    for (int i = 0; i < mat.length; i++) {
+        for (int j = 0; j < mat[i].length; j++) {
+            mat[i][j] += suffix;
+        }
+    }
+}

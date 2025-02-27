@@ -1,0 +1,21 @@
+Input:
+<method>
+	List<String> repeatElements(List<String> arg0, int arg1)
+</method>
+<TestCases>
+	// #1. ([], 3) -> []
+    // #2. (["hello", "world"], 2) -> ["hello", "hello", "world", "world"]
+    // #3. (["hello"], 5) -> ["hello", "hello", "hello", "hello", "hello"]
+    // #4. (["welcome", "to", "java", "programming", "language"], 2) -> ["welcome", "welcome", "to", "to", "java", "java", "programming", "programming" ,"language" ,"language"]
+</TestCases>
+
+Output:
+List < String > repeatElements(List < String > arg0, int arg1) {
+    List < String > repeatedList = new ArrayList < > ();
+    for (String element: arg0) {
+        for (int i = 0; i < arg1; i++) {
+            repeatedList.add(element);
+        }
+    }
+    return repeatedList;
+}

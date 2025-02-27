@@ -1,0 +1,18 @@
+Input:
+<method>
+     double lineLength(Line2D line)
+</method>
+<TestCases>
+    // #1.  Line2D.Double(3.0, 4.0, 3.6, -5.0) -> Math.sqrt(81.36)
+    // #2.  Line2D.Double(0.0, 0.0, 60.0, -80.0) -> 100.0
+    // #3.  Line2D.Double(60.0, -80.0, 0.0, 0.0) -> 100.0
+</TestCases>
+
+Output:
+double lineLength(Line2D line) {
+    double x1 = line.getX1();
+    double y1 = line.getY1();
+    double x2 = line.getX2();
+    double y2 = line.getY2();
+    return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+}

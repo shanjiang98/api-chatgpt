@@ -1,0 +1,14 @@
+Input:
+<method>
+	Rectangle2D translate(Rectangle2D rect, double dx, double dy)
+</method>
+<TestCases>
+	// #1. (Rectangle2D.Double(10, 20, 10, 2), 6.0, 1.0) -> Rectangle2D.Double(16, 21, 10, 2)
+</TestCases>
+
+Output:
+Rectangle2D translate(Rectangle2D rect, double dx, double dy) {
+    // Translate the rectangle by dx and dy
+    rect.setRect(rect.getX() + dx, rect.getY() + dy, rect.getWidth(), rect.getHeight());
+    return rect;
+}

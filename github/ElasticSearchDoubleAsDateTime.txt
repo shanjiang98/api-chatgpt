@@ -1,0 +1,22 @@
+Input:
+<method>
+   DateTime doubleAsDateTime(Double d)
+</method>
+<TestCases>
+    // #1.  123456789.0 -> new DateTime(123456789, DateTimeZone.UTC)
+    // #2.  Double.POSITIVE_INFINITY -> null
+    // #3.  Double.NEGATIVE_INFINITY -> null
+    // #4.  null -> null
+    // #5.  Double.NaN -> DateTime(0, DateTimeZone.UTC)
+</TestCases>
+
+Output:
+public DateTime doubleAsDateTime(Double d) {
+    if (d == null || d.isInfinite()) {
+        return null;
+    }
+    if (d.isNaN()) {
+        return new DateTime(0, DateTimeZone.UTC);
+    }
+    return new DateTime(d.longValue(), DateTimeZone.UTC);
+}

@@ -1,0 +1,13 @@
+Input:
+<method>
+    int getAge(DateTime birthdate)
+</method>
+<TestCases>
+    // #1. DateTime(1990, 11, 13, 2, 0) -> Years.yearsBetween(new DateTime(1990, 11, 13, 2, 0), DateTime.now()).getYears()
+    // #2. DateTime(1980, 11, 13, 2, 0) -> Years.yearsBetween(new DateTime(1980, 11, 13, 2, 0), DateTime.now()).getYears()
+</TestCases>
+
+Output:
+int getAge(DateTime birthDate) {
+    return Years.yearsBetween(birthDate, DateTime.now()).getYears();
+}

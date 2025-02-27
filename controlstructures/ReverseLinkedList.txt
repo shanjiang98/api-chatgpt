@@ -1,0 +1,24 @@
+Input:
+<method>
+    LinkedListNode reverseLinkedList(LinkedListNode node)
+</method>
+<TestCases>
+    // #1.  LinkedListNode(123, new LinkedListNode(234, new LinkedListNode(345, new LinkedListNode(456, new LinkedListNode(567, new LinkedListNode(99, null)))))) -> LinkedListNode(99, new LinkedListNode(567, new LinkedListNode(456, new LinkedListNode(345, new LinkedListNode(234, new LinkedListNode(123, null))))))
+    // #2.  LinkedListNode(123, new LinkedListNode(234, new LinkedListNode(345, null))) -> LinkedListNode(345, new LinkedListNode(234, new LinkedListNode(123, null)))
+    // #3.  LinkedListNode(123, new LinkedListNode(234, null)) -> LinkedListNode(234, new LinkedListNode(123, null))
+    // #4.  LinkedListNode(123, null) -> LinkedListNode(123, null)
+    // #5.  null -> null
+</TestCases>
+
+Output:
+public LinkedListNode reverseLinkedList(LinkedListNode node) {
+    LinkedListNode prev = null;
+    LinkedListNode current = node;
+    while (current != null) {
+        LinkedListNode nextNode = current.next; // Store next
+        current.next = prev; // Reverse current node's pointer
+        prev = current; // Move pointers one position forward.
+        current = nextNode;
+    }
+    return prev;
+}

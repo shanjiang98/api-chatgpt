@@ -1,0 +1,22 @@
+Input:
+<method>
+    String uppercaseFirstChar(String str)
+</method>
+<TestCases>
+    // #1.  "computer science is COOL" -> "Computer science is COOL"
+    // #2.  "123abc" -> "123abc"
+    // #3.  "aaa" -> "Aaa"
+    // #4.  "a" -> "A"
+	// #5.  "" -> ""
+</TestCases>
+
+Output:
+public String uppercaseFirstChar(String str) {
+    if (str == null || str.isEmpty()) {
+        return str; // return empty string or null as is
+    }
+    if (!Character.isLetter(str.charAt(0))) {
+        return str; // if the first character is not a letter, return the string as is
+    }
+    return Character.toUpperCase(str.charAt(0)) + str.substring(1);
+}

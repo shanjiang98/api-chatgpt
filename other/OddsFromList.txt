@@ -1,0 +1,22 @@
+Input:
+<method>
+	List<Integer> OddsInList(List<Integer> arg0)
+</method>
+<TestCases>
+	// #1. [] -> []
+    // #2. [6, 3] -> [3]
+    // #3. [5, 8, 10, 9, 4] -> [5, 9]
+    // #4. [15] -> [15]
+    // #5. [-2, 2] -> []
+</TestCases>
+
+Output:
+List < Integer > OddsInList(List < Integer > arg0) {
+    List < Integer > oddNumbers = new ArrayList < > ();
+    for (int num: arg0) {
+        if (num % 2 != 0) {
+            oddNumbers.add(num);
+        }
+    }
+    return oddNumbers;
+}

@@ -1,0 +1,22 @@
+Input:
+<method>
+   int fastjsonSize(Object rootObject, String path)
+</method>
+<TestCases>
+    // #1.  ArrayList("abc", "def", 123), "$" -> 3
+    // #2.  JSONObject().fluentPut("values", BenchmarkUtils.makeList("abc", "def", 123)), "$.values" -> 3
+    // #3.  Collections.nCopies(111, "foo"), "$" -> 111
+</TestCases>
+
+Output:
+public static int fastjsonSize(Object rootObject, String path) {
+    Object result = JSONPath.eval(rootObject, path);
+    if (result instanceof List) {
+        return ((List << ? > ) result).size();
+    } else if (result instanceof JSONObject) {
+        return ((JSONObject) result).size();
+    } else if (result != null) {
+        return 1;
+    }
+    return 0;
+}

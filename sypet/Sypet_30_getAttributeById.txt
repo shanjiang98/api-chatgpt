@@ -1,0 +1,18 @@
+Input:
+<method>
+   String getAttributeById(File arg0, String arg1) throws Throwable
+</method>
+<TestCases>
+    // #1.  (File("benchmarkFiles/sypet_30_doc.xml"), "brand") -> "ut"
+</TestCases>
+
+Output:
+public String getAttributeById(File file, String id) throws Throwable {
+    // Load the XML document
+    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+    DocumentBuilder builder = factory.newDocumentBuilder();
+    Document doc = builder.parse(file);
+
+    Element element = doc.getDocumentElement();
+    return element.getAttribute(id);
+}

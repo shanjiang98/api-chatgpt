@@ -1,0 +1,26 @@
+Input:
+<method>
+    void rotateQueue(Queue<String> queue, int amount)
+</method>
+<TestCases>
+    // #1.  Queue("a", "b", "c", "d", "e"), 1 -> Queue("b", "c", "d", "e", "a")
+    // #2.  Queue("b", "c", "d", "e", "a"), 4 -> Queue("a", "b", "c", "d", "e")
+    // #3.  Queue("a", "b", "c", "d", "e"), 7 -> Queue("c", "d", "e", "a", "b")
+    // #4.  Queue("b", "c", "d", "e", "a"), 0 -> Queue("b", "c", "d", "e", "a")
+    // #5.  Queue(), 4 -> Queue()
+    // #6.  Queue("b", "c", "d", "e", "a"), 10003 -> Queue("e", "a", "b", "c", "d")
+</TestCases>
+
+Output:
+void rotateQueue(Queue < String > queue, int amount) {
+    if (queue.isEmpty() || amount <= 0) {
+        return;
+    }
+
+    int effectiveAmount = amount % queue.size();
+
+    for (int i = 0; i < effectiveAmount; i++) {
+        String front = queue.poll();
+        queue.add(front);
+    }
+}

@@ -1,0 +1,27 @@
+Input:
+<method>
+   float correlationCoefficient(int X[], int Y[], int n)
+</method>
+<TestCases>
+    // #1.  X[] = {43, 21, 25, 42, 57, 59}, Y[] = {99, 65, 79, 75, 87, 81} -> 0.529809
+    // #2.  X[] = {15, 18, 21, 24, 27}, Y[] = {25, 25, 27, 31, 32} -> 0.953463
+</TestCases>
+
+Output:
+public float correlationCoefficient(int X[], int Y[], int n) {
+    int sumX = 0, sumY = 0, sumXY = 0;
+    int squareSumX = 0, squareSumY = 0;
+
+    for (int i = 0; i < n; i++) {
+        sumX += X[i];
+        sumY += Y[i];
+        sumXY += X[i] * Y[i];
+        squareSumX += X[i] * X[i];
+        squareSumY += Y[i] * Y[i];
+    }
+
+    float numerator = n * sumXY - sumX * sumY;
+    float denominator = (float) Math.sqrt((n * squareSumX - sumX * sumX) * (n * squareSumY - sumY * sumY));
+
+    return numerator / denominator;
+}

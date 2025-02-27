@@ -1,0 +1,27 @@
+Input:
+<method>
+   int guavaConstrainToRange(int value, int min, int max)
+</method>
+<TestCases>
+    // #1.  Object[] { 1, 0, 5 } -> 1
+    // #2.  Object[] { 1, 1, 5 } -> 1
+    // #3.  Object[] { 1, 3, 5 } -> 3
+    // #4.  Object[] { 0, -5, -1 } -> -1
+    // #5.  Object[] { 5, 2, 2 } -> 2
+    // #6.  Object[] { 123, 67, 89 } -> 89
+    // #7.  Object[] { 45, 67, 89 } -> 67
+    // #8.  Object[] { 75, 67, 89 } -> 75
+</TestCases>
+
+Output:
+// Step 5: Implement the Method to Pass All Test Cases
+public int guavaConstrainToRange(int value, int min, int max) {
+    // Ensure the value is within the bounds of min and max
+    if (value < min) {
+        return min;
+    } else if (value > max) {
+        return max;
+    } else {
+        return value;
+    }
+}
