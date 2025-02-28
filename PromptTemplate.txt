@@ -31,43 +31,125 @@
 </Instruction>
 <examples> 
     Here are a few examples:
-    <method>
-        List<Integer> GetRange(int start, int end)
-    </method>
-    <TestCases>
-        // #1. (10, 9) -> []
-        // #2. (10, 10) -> []
-        // #3. (10, 11) -> [10]
-        // #4. (10, 12) -> [10, 11]
-        // #5. (-2, 2) -> [-1, -1, 0, 1]
-    </TestCases>
-    <output>
-        List<Integer> GetRange(int start, int end) {
-            ArrayList<Integer> range = new ArrayList<Integer>();
-            for (int i=0; i+start < end; i++)
-                range.add(Integer.valueOf(i+start));
-            return range;
-        }
-    </output>
-    <method>
-        void updateStringAtIndex(String[] strings, int index, String newValue)
-    </method>
-    <TestCases>
-        // #1. strings = {"apple", "banana", "cherry"}, index = 1, newValue = "blueberry" -> {"apple", "blueberry", "cherry"}
-        // #2. strings = {"apple", "blueberry", "cherry"}, index = 0, newValue = "apricot" -> {"apricot", "blueberry", "cherry"}
-        // #3. strings = {"apple", "banana", "cherry"}, index = 2, newValue = "date" -> {"apple", "banana", "date"}
-        // #4. strings = {"apple", "banana", "cherry"}, index = -1, newValue = "peach" -> {"apple", "banana", "cherry"}
-        // #5. strings = {"apple", "banana", "cherry"}, index = 3, newValue = "blueberry" -> {"apple", "banana", "cherry"}
-    </TestCases>
-    <output>
-        void updateStringAtIndex(String[] strings, int index, String newValue) {
-            if (strings == null || index < 0 || index >= strings.length || newValue == null) {
-                return; // Exit if invalid input
+    <example>
+        <method>
+            List<Integer> GetRange(int start, int end)
+        </method>
+        <TestCases>
+            // #1. (10, 9) -> []
+            // #2. (10, 10) -> []
+            // #3. (10, 11) -> [10]
+            // #4. (10, 12) -> [10, 11]
+            // #5. (-2, 2) -> [-1, -1, 0, 1]
+        </TestCases>
+        <output>
+            List<Integer> GetRange(int start, int end) {
+                ArrayList<Integer> range = new ArrayList<Integer>();
+                for (int i=0; i+start < end; i++)
+                    range.add(Integer.valueOf(i+start));
+                return range;
             }
-            strings[index] = newValue;
-        }
-        ...
-    </output>
+        </output>
+    </example>
+    <example>
+        <method>
+            void updateStringAtIndex(String[] strings, int index, String newValue)
+        </method>
+        <TestCases>
+            // #1. strings = {"apple", "banana", "cherry"}, index = 1, newValue = "blueberry" -> {"apple", "blueberry", "cherry"}
+            // #2. strings = {"apple", "blueberry", "cherry"}, index = 0, newValue = "apricot" -> {"apricot", "blueberry", "cherry"}
+            // #3. strings = {"apple", "banana", "cherry"}, index = 2, newValue = "date" -> {"apple", "banana", "date"}
+            // #4. strings = {"apple", "banana", "cherry"}, index = -1, newValue = "peach" -> {"apple", "banana", "cherry"}
+            // #5. strings = {"apple", "banana", "cherry"}, index = 3, newValue = "blueberry" -> {"apple", "banana", "cherry"}
+        </TestCases>
+        <output>
+            void updateStringAtIndex(String[] strings, int index, String newValue) {
+                if (strings == null || index < 0 || index >= strings.length || newValue == null) {
+                    return; // Exit if invalid input
+                }
+                strings[index] = newValue;
+            }
+        </output>
+    </example>
+    <example>
+        <method>
+            void updatePerson(Person person, String newName, int newAge)
+        </method>
+        <TestCases>
+            <checker>
+            boolean checker(Person person, String expectedName, int expectedAge) {
+                return person.getName().equals(expectedName) && person.getAge() == expectedAge;
+            }
+            </checker>
+            // #1. person = Person("Alice", 28), newName = "Alice Smith", newAge = 29 -> checker(updatePerson(person, newName, newAge), "Alice Smith", 29) == true
+            // #2. person = Person("Bob", 40), newName = "Bobby", newAge = 41 -> checker(updatePerson(person, newName, newAge), "Bobby", 41) == true
+            // #3. person = Person("Charlie", 50), newName = "Charlie", newAge = 50 -> checker(updatePerson(person, newName, newAge), "Charlie", 50) == true
+        </TestCases>
+        <output>
+            class Person {
+                private String name;
+                private int age;
+
+                public Person(String name, int age) {
+                    this.name = name;
+                    this.age = age;
+                }
+
+                public String getName() {
+                    return name;
+                }
+
+                public void setName(String name) {
+                    this.name = name;
+                }
+
+                public int getAge() {
+                    return age;
+                }
+
+                public void setAge(int age) {
+                    this.age = age;
+                }
+            }
+            public static void updatePerson(Person person, String newName, int newAge) {
+                person.setName(newName);
+                person.setAge(newAge);
+            }
+        </output>
+    </example>
+
+    <example>
+        <method>
+            Table<String, String, Integer> updateTable(Table<String, String, Integer> original, String row, String column, Integer value)
+        </method>
+        <TestCases>
+            <checker>
+                boolean checker1(Table<String, String, Integer> table) {
+                    return table.contains("History", "David") && table.get("History", "David").equals(88);
+                }
+                boolean checker1(Table<String, String, Integer> table) {
+                    return table.contains("Art", "Eve") && table.get("Art", "Eve").equals(92);
+                }
+            </checker>
+            // #1. Table<String, String, Integer> table = HashBasedTable.create();
+                   (table = table, row = "History", column = "David", value = 88 -> checker1(updateTable(table, row, column, value)) == true
+            // #2. Table<String, String, Integer> table = HashBasedTable.create();
+                   (table = table, row = "Art", column = "Eve", value = 92 -> checker2(updateTable(table, row, column, value)) == true
+        </TestCases>
+        <output>
+            public static Table<String, String, Integer> updateTable(Table<String, String, Integer> original, String row, String column, Integer value) {
+                // Create a copy of the original Table
+                Table<String, String, Integer> updatedTable = HashBasedTable.create(original);
+        
+                // Add the new row-column-value entry
+                updatedTable.put(row, column, value);
+        
+                // Return the updated Table
+                return updatedTable;
+            }
+        </output>
+    </example>
+    ...
 </examples>
 Now, give you the following context:
 <method>
